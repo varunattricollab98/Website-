@@ -1,95 +1,121 @@
 import { Link } from 'react-router-dom'
-import { MessageCircle } from 'lucide-react'
+import { Phone, Mail, MapPin, MessageCircle } from 'lucide-react'
 
 const footerLinks = {
-  Company: [
-    { label: 'About', to: '/about' },
-    { label: 'Contact', to: '/contact' },
-    { label: 'Careers', to: '#' },
-    { label: 'Blog', to: '#' },
+  company: [
+    { label: 'About Us', href: '/about' },
+    { label: 'Contact', href: '/contact' },
+    { label: 'Careers', href: '#' },
+    { label: 'Blog', href: '#' },
+    { label: 'List Your Space', href: '#' },
   ],
-  Services: [
-    { label: 'Virtual Office', to: '/virtual-office' },
-    { label: 'Coworking', to: '/coworking' },
-    { label: 'Meeting Rooms', to: '/meeting-rooms' },
-    { label: 'CA Services', to: '/ca-services' },
+  services: [
+    { label: 'Virtual Office', href: '/virtual-office' },
+    { label: 'Coworking Spaces', href: '/coworking' },
+    { label: 'Meeting Rooms', href: '/meeting-rooms' },
+    { label: 'GST Registration', href: '/ca-services' },
+    { label: 'Company Registration', href: '/ca-services' },
+    { label: 'Trademark Registration', href: '/ca-services' },
   ],
-  Cities: [
-    { label: 'Delhi', to: '/city/delhi' },
-    { label: 'Mumbai', to: '/city/mumbai' },
-    { label: 'Bangalore', to: '/city/bangalore' },
-    { label: 'Gurgaon', to: '/city/gurgaon' },
-    { label: 'Noida', to: '/city/noida' },
-    { label: 'Pune', to: '/city/pune' },
-    { label: 'Hyderabad', to: '/city/hyderabad' },
-    { label: 'Chennai', to: '/city/chennai' },
-    { label: 'Kolkata', to: '/city/kolkata' },
-    { label: '+7 more', to: '#' },
-  ],
-  Legal: [
-    { label: 'Privacy Policy', to: '#' },
-    { label: 'Terms of Service', to: '#' },
-    { label: 'Refund Policy', to: '#' },
+  cities: [
+    { label: 'Delhi', href: '/virtual-office/delhi' },
+    { label: 'Mumbai', href: '/virtual-office/mumbai' },
+    { label: 'Bangalore', href: '/virtual-office/bangalore' },
+    { label: 'Gurgaon', href: '/virtual-office/gurgaon' },
+    { label: 'Noida', href: '/virtual-office/noida' },
+    { label: 'Hyderabad', href: '/virtual-office/hyderabad' },
+    { label: 'Chennai', href: '/virtual-office/chennai' },
+    { label: 'Pune', href: '/virtual-office/pune' },
+    { label: 'Kolkata', href: '/virtual-office/kolkata' },
+    { label: 'Ahmedabad', href: '/virtual-office/ahmedabad' },
   ],
 }
 
 export default function Footer() {
   return (
     <>
-      <footer className="bg-gray-900 text-gray-300">
-        <div className="container-custom py-16">
-          {/* Top Section */}
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+      <footer className="bg-text pt-16 pb-8 relative">
+        <div className="container-custom">
+          <div className="grid md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-12 pb-10 border-b border-white/10">
             {/* Brand */}
-            <div className="col-span-2 md:col-span-4 lg:col-span-1 mb-4 lg:mb-0">
-              <Link to="/" className="inline-block mb-4">
+            <div className="lg:col-span-3">
+              <Link to="/" className="flex items-center gap-2 mb-4">
+                <div className="w-9 h-9 bg-primary rounded-xl flex items-center justify-center">
+                  <span className="text-white font-bold text-sm">E</span>
+                </div>
                 <span className="text-xl font-bold text-white">
-                  Ease<span className="text-blue-400">My</span>Office
+                  Ease<span className="text-primary-400">My</span>Office
                 </span>
               </Link>
-              <p className="text-sm text-gray-400 max-w-xs">
-                India&#39;s leading virtual office and business address provider. Premium addresses across 28 states.
+              <p className="text-sm text-gray-400 leading-relaxed mb-5">
+                India's leading platform for virtual office, coworking, and business compliance solutions.
               </p>
+              <div className="space-y-3">
+                <a href="tel:8882735038" className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors">
+                  <Phone className="w-4 h-4" /> 888-273-5038
+                </a>
+                <a href="mailto:connect@easemyoffice.in" className="flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors">
+                  <Mail className="w-4 h-4" /> connect@easemyoffice.in
+                </a>
+                <div className="flex items-start gap-2 text-sm text-gray-400">
+                  <MapPin className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                  <span>336, Udyog Vihar Phase 4, Sector 19, Gurugram, Haryana 122016</span>
+                </div>
+              </div>
             </div>
 
-            {/* Links */}
-            {Object.entries(footerLinks).map(([title, links]) => (
-              <div key={title}>
-                <h4 className="text-white font-semibold mb-4 text-sm">{title}</h4>
-                <ul className="space-y-2">
-                  {links.map((link) => (
-                    <li key={link.label}>
-                      <Link
-                        to={link.to}
-                        className="text-sm text-gray-400 hover:text-white transition-colors"
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+            {/* Company */}
+            <div className="lg:col-span-2">
+              <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">Company</h4>
+              <ul className="space-y-2.5">
+                {footerLinks.company.map((link) => (
+                  <li key={link.label}>
+                    <Link to={link.href} className="text-sm text-gray-400 hover:text-white transition-colors">
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Services */}
+            <div className="lg:col-span-3">
+              <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">Services</h4>
+              <ul className="space-y-2.5">
+                {footerLinks.services.map((link) => (
+                  <li key={link.label}>
+                    <Link to={link.href} className="text-sm text-gray-400 hover:text-white transition-colors">
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Cities */}
+            <div className="lg:col-span-4">
+              <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">Virtual Office In</h4>
+              <ul className="grid grid-cols-2 gap-x-4 gap-y-2.5">
+                {footerLinks.cities.map((link) => (
+                  <li key={link.label}>
+                    <Link to={link.href} className="text-sm text-gray-400 hover:text-white transition-colors">
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
-          {/* Bottom Section */}
-          <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row items-center justify-between gap-4">
+          {/* Bottom */}
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8">
             <p className="text-sm text-gray-500">
-              &copy; {new Date().getFullYear()} EaseMyOffice. All rights reserved.
+              © 2024 EaseMyOffice. All rights reserved.
             </p>
-            <div className="flex items-center gap-4">
-              <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
-                LinkedIn
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
-                Twitter
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
-                Instagram
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white transition-colors text-sm">
-                Facebook
-              </a>
+            <div className="flex items-center gap-6">
+              <a href="#" className="text-sm text-gray-500 hover:text-gray-300 transition-colors">Privacy Policy</a>
+              <a href="#" className="text-sm text-gray-500 hover:text-gray-300 transition-colors">Terms of Service</a>
+              <a href="#" className="text-sm text-gray-500 hover:text-gray-300 transition-colors">Refund Policy</a>
             </div>
           </div>
         </div>
@@ -97,13 +123,13 @@ export default function Footer() {
 
       {/* WhatsApp Floating Button */}
       <a
-        href="https://wa.me/919999999999"
+        href="https://wa.me/918882735038"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-[#25D366] rounded-full flex items-center justify-center shadow-xl hover:scale-110 transition-transform duration-200"
         aria-label="Chat on WhatsApp"
       >
-        <MessageCircle className="w-6 h-6" />
+        <MessageCircle className="w-6 h-6 text-white" />
       </a>
     </>
   )
