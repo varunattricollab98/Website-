@@ -75,18 +75,21 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Right — Liquid Glass Form */}
+          {/* Right — Crystal Glass Form */}
           <motion.div
             className="relative"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            {/* Soft static glows behind the glass (no motion — keeps text crisp) */}
-            <div className="glass-glow w-64 h-64 -top-8 -right-4" style={{ background: 'radial-gradient(circle, #93bce0, transparent 70%)' }} />
-            <div className="glass-glow w-56 h-56 -bottom-6 -left-6" style={{ background: 'radial-gradient(circle, #c4d9ee, transparent 70%)' }} />
+            {/* Background that makes the glass visible */}
+            <div className="absolute -inset-4 rounded-[36px] bg-gradient-to-br from-[#e8f1fa] via-[#f0f7ff] to-[#dce8f5]" />
+            
+            {/* Subtle decorative glows */}
+            <div className="glass-glow w-48 h-48 -top-6 -right-6" style={{ background: 'radial-gradient(circle, #b3d4f0, transparent 70%)' }} />
+            <div className="glass-glow w-40 h-40 -bottom-4 -left-4" style={{ background: 'radial-gradient(circle, #c4d9ee, transparent 70%)' }} />
 
-            <div className="crystal-glass relative rounded-[28px] overflow-hidden">
+            <div className="crystal-glass relative rounded-[24px]">
               <div className="p-6 lg:p-8 relative z-[2]">
                 {/* Header */}
                 <div className="flex items-start gap-3 mb-6">

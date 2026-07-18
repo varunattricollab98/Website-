@@ -147,29 +147,44 @@
   /* ===== Crystal Glass — clear, crisp, premium ===== */
   .crystal-glass {
     position: relative;
-    background: linear-gradient(160deg, rgba(255,255,255,0.88) 0%, rgba(255,255,255,0.72) 100%);
-    backdrop-filter: blur(18px) saturate(150%);
-    -webkit-backdrop-filter: blur(18px) saturate(150%);
-    border: 1px solid rgba(255,255,255,0.9);
+    background: linear-gradient(160deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.78) 100%);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1.5px solid rgba(255,255,255,0.95);
     box-shadow:
-      0 24px 60px -18px rgba(17,65,124,0.28),
-      0 4px 12px -4px rgba(17,65,124,0.08),
-      inset 0 1px 1px rgba(255,255,255,1);
+      0 28px 64px -18px rgba(17,65,124,0.30),
+      0 4px 14px -4px rgba(17,65,124,0.10),
+      inset 0 1.5px 0 rgba(255,255,255,1),
+      inset 0 -1px 0 rgba(17,65,124,0.04);
   }
 
-  /* Thin bright top sheen — glass edge highlight */
+  /* Bright top-edge sheen — like light hitting glass */
   .crystal-glass::before {
     content: '';
     position: absolute;
     inset: 0;
     border-radius: inherit;
     padding: 1.5px;
-    background: linear-gradient(150deg, rgba(255,255,255,1), rgba(255,255,255,0) 35%, rgba(255,255,255,0) 65%, rgba(255,255,255,0.6));
+    background: linear-gradient(155deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 30%, rgba(255,255,255,0) 70%, rgba(255,255,255,0.7) 100%);
     -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
     pointer-events: none;
     z-index: 1;
+  }
+
+  /* Inner top reflection shimmer */
+  .crystal-glass::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 50%;
+    border-radius: inherit;
+    background: linear-gradient(180deg, rgba(255,255,255,0.5) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
   }
 
   /* Crystal-clear input fields — solid, crisp, readable */
