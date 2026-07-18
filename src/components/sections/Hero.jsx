@@ -3,7 +3,7 @@ import { Check, Phone, Lock, MapPin, Star, User, Mail, Sparkles, Clock, ShieldCh
 
 export default function Hero() {
   return (
-    <section id="hero" className="pt-24 lg:pt-28 pb-16 lg:pb-20 bg-white">
+    <section id="hero" className="pt-24 lg:pt-28 pb-10 lg:pb-12 bg-white">
       <div className="container-custom">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 

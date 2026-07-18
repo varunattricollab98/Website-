@@ -45,7 +45,7 @@ const plans = [
 
 export default function Plans() {
   return (
-    <section id="plans" className="section-padding bg-white">
+    <section id="plans" className="py-14 lg:py-16 bg-white">
       <div className="container-custom">
         <motion.div
           className="text-center mb-14 max-w-2xl mx-auto"
