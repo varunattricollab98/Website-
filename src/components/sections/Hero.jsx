@@ -1,15 +1,5 @@
 import { motion } from 'framer-motion'
-import { Check, Phone, Lock, MapPin, Star, User, Mail, ChevronDown, Sparkles, Clock, ShieldCheck, ArrowRight } from 'lucide-react'
-import { cities } from '../../data/cities'
-
-const requirements = [
-  'Business Compliance (GST) Registration',
-  'New Company Registration',
-  'Business Mailing Address',
-  'APOB Registration',
-  'Coworking / Meeting Room',
-  'Other — not sure yet',
-]
+import { Check, Phone, Lock, MapPin, Star, User, Mail, Sparkles, Clock, ShieldCheck, ArrowRight } from 'lucide-react'
 
 export default function Hero() {
   return (
@@ -85,26 +75,27 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Right — Premium Form */}
+          {/* Right — Liquid Glass Form */}
           <motion.div
+            className="relative"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <div className="relative bg-white rounded-3xl border border-gray-200/80 shadow-[0_20px_60px_-15px_rgba(17,65,124,0.25)] overflow-hidden">
-              {/* Gradient accent bar */}
-              <div className="h-1.5 w-full" style={{ background: 'linear-gradient(90deg, #11417c, #2c679e, #11417c)' }} />
+            {/* Water blobs drifting behind the glass */}
+            <div className="water-blob w-64 h-64 -top-10 -right-6" style={{ background: 'radial-gradient(circle, #2c679e, transparent 70%)' }} />
+            <div className="water-blob w-56 h-56 bottom-0 -left-8" style={{ background: 'radial-gradient(circle, #11417c, transparent 70%)', animationDelay: '-5s' }} />
+            <div className="water-blob w-48 h-48 top-1/3 right-1/4" style={{ background: 'radial-gradient(circle, #5b96cc, transparent 70%)', animationDelay: '-9s' }} />
 
-              <div className="p-6 lg:p-8">
+            <div className="liquid-glass relative rounded-[28px] overflow-hidden">
+              <div className="p-6 lg:p-8 relative z-[2]">
                 {/* Header */}
                 <div className="flex items-start gap-3 mb-6">
-                  <div className="w-11 h-11 rounded-xl bg-primary-50 flex items-center justify-center flex-shrink-0">
+                  <div className="w-11 h-11 rounded-2xl bg-white/60 backdrop-blur-md border border-white/70 flex items-center justify-center flex-shrink-0 shadow-sm">
                     <Sparkles className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <div className="flex items-center gap-2 mb-0.5">
-                      <h3 className="text-xl font-bold text-[#0f1a2e]">Get a Free Consultation</h3>
-                    </div>
+                    <h3 className="text-xl font-bold text-[#0f1a2e]">Get a Free Consultation</h3>
                     <p className="text-sm text-text-light">
                       Our experts reply within <span className="font-semibold text-primary">10 minutes</span>
                     </p>
@@ -114,11 +105,11 @@ export default function Hero() {
                 <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
                   {/* Name */}
                   <div className="relative">
-                    <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 peer-focus:text-primary" />
+                    <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                     <input
                       type="text"
                       placeholder="Your full name"
-                      className="peer w-full pl-10 pr-4 py-3.5 bg-surface-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary focus:bg-white transition-all placeholder:text-gray-400"
+                      className="liquid-field w-full pl-10 pr-4 py-3.5 rounded-2xl text-sm text-text"
                     />
                   </div>
 
@@ -129,7 +120,7 @@ export default function Hero() {
                       <input
                         type="email"
                         placeholder="Email address"
-                        className="w-full pl-10 pr-4 py-3.5 bg-surface-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary focus:bg-white transition-all placeholder:text-gray-400"
+                        className="liquid-field w-full pl-10 pr-4 py-3.5 rounded-2xl text-sm text-text"
                       />
                     </div>
                     <div className="relative">
@@ -137,45 +128,34 @@ export default function Hero() {
                       <input
                         type="tel"
                         placeholder="Phone number"
-                        className="w-full pl-10 pr-4 py-3.5 bg-surface-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary focus:bg-white transition-all placeholder:text-gray-400"
+                        className="liquid-field w-full pl-10 pr-4 py-3.5 rounded-2xl text-sm text-text"
                       />
                     </div>
                   </div>
 
-                  {/* Location dropdown */}
+                  {/* Preferred Location — free type */}
                   <div className="relative">
-                    <MapPin className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 z-10" />
-                    <select
-                      defaultValue=""
-                      className="w-full pl-10 pr-10 py-3.5 bg-surface-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary focus:bg-white transition-all appearance-none text-gray-500 valid:text-text"
-                    >
-                      <option value="" disabled>Preferred city / location</option>
-                      {cities.map((c) => (
-                        <option key={c.slug} value={c.slug}>{c.name}</option>
-                      ))}
-                      <option value="other">Other city</option>
-                    </select>
-                    <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+                    <MapPin className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                    <input
+                      type="text"
+                      placeholder="Preferred location (e.g. Delhi, Mumbai)"
+                      className="liquid-field w-full pl-10 pr-4 py-3.5 rounded-2xl text-sm text-text"
+                    />
                   </div>
 
-                  {/* Requirement dropdown */}
+                  {/* Additional Details — free type */}
                   <div className="relative">
-                    <select
-                      defaultValue=""
-                      className="w-full px-4 pr-10 py-3.5 bg-surface-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary focus:bg-white transition-all appearance-none text-gray-500"
-                    >
-                      <option value="" disabled>What do you need help with?</option>
-                      {requirements.map((r) => (
-                        <option key={r} value={r}>{r}</option>
-                      ))}
-                    </select>
-                    <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+                    <textarea
+                      rows={3}
+                      placeholder="Tell us what you need — GST registration, company registration, mailing address, etc."
+                      className="liquid-field w-full px-4 py-3.5 rounded-2xl text-sm text-text resize-none"
+                    />
                   </div>
 
                   {/* Submit */}
                   <button
                     type="submit"
-                    className="group w-full py-4 text-white font-bold rounded-xl transition-all text-sm shadow-lg shadow-primary/25 hover:shadow-xl hover:-translate-y-0.5 flex items-center justify-center gap-2"
+                    className="liquid-btn group w-full py-4 text-white font-bold rounded-2xl transition-all text-sm shadow-lg shadow-primary/30 hover:shadow-xl hover:-translate-y-0.5 flex items-center justify-center gap-2"
                     style={{ background: 'linear-gradient(135deg, #11417c, #2c679e)' }}
                   >
                     Get My Free Quote
@@ -184,17 +164,17 @@ export default function Hero() {
                 </form>
 
                 {/* Trust badges */}
-                <div className="flex items-center justify-center gap-4 mt-5 pt-5 border-t border-gray-100">
+                <div className="flex items-center justify-center gap-4 mt-5 pt-5 border-t border-white/40">
                   <div className="flex items-center gap-1.5 text-xs text-text-light">
                     <Lock className="w-3.5 h-3.5 text-accent-green" />
                     <span>100% Secure</span>
                   </div>
-                  <div className="w-px h-3 bg-gray-200" />
+                  <div className="w-px h-3 bg-gray-300/50" />
                   <div className="flex items-center gap-1.5 text-xs text-text-light">
                     <Clock className="w-3.5 h-3.5 text-accent-green" />
                     <span>10-min Reply</span>
                   </div>
-                  <div className="w-px h-3 bg-gray-200" />
+                  <div className="w-px h-3 bg-gray-300/50" />
                   <div className="flex items-center gap-1.5 text-xs text-text-light">
                     <Check className="w-3.5 h-3.5 text-accent-green" />
                     <span>No Spam</span>
