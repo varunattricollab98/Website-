@@ -25,11 +25,16 @@ export default function CityGrid() {
             <motion.a
               key={city.name}
               href={`/virtual-office/${city.slug}`}
-              className="group flex items-center justify-between bg-white rounded-xl p-4 lg:p-5 border border-surface-200 hover:border-primary hover:shadow-card transition-all duration-300"
+              className="premium-card group flex items-center justify-between rounded-xl p-4 lg:p-5 border border-surface-200"
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.03 }}
+              onMouseMove={(e) => {
+                const r = e.currentTarget.getBoundingClientRect()
+                e.currentTarget.style.setProperty('--mx', `${e.clientX - r.left}px`)
+                e.currentTarget.style.setProperty('--my', `${e.clientY - r.top}px`)
+              }}
             >
               <div>
                 <div className="text-sm font-bold text-[#0f1a2e] group-hover:text-primary transition-colors">

@@ -28,11 +28,16 @@ export default function Testimonials() {
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.name}
-              className="relative bg-white rounded-2xl p-6 lg:p-7 border border-surface-200 hover:border-primary-200 shadow-soft hover:shadow-card-hover transition-all duration-300 group"
+              className="premium-card relative rounded-2xl p-6 lg:p-7 border border-surface-200 shadow-soft group"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
+              onMouseMove={(e) => {
+                const r = e.currentTarget.getBoundingClientRect()
+                e.currentTarget.style.setProperty('--mx', `${e.clientX - r.left}px`)
+                e.currentTarget.style.setProperty('--my', `${e.clientY - r.top}px`)
+              }}
             >
               {/* Quote icon */}
               <div className="absolute top-6 right-6 opacity-10 group-hover:opacity-20 transition-opacity">

@@ -37,6 +37,62 @@
     @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-card-hover;
   }
 
+  /* Premium glassy card with sheen + glow on hover */
+  .premium-card {
+    position: relative;
+    isolation: isolate;
+    background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(248,250,252,0.85) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                border-color 0.4s ease;
+    overflow: hidden;
+  }
+
+  .premium-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 0%), rgba(44,103,158,0.10), transparent 40%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  /* Sheen sweep */
+  .premium-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    z-index: 1;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.55), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+  }
+
+  .premium-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(44,103,158,0.5);
+    box-shadow: 0 24px 48px -12px rgba(17,65,124,0.28), 0 8px 20px -8px rgba(44,103,158,0.15);
+  }
+
+  .premium-card:hover::before { opacity: 1; }
+  .premium-card:hover::after { left: 130%; }
+
+  /* Glassy icon tile with hover glow */
+  .glass-icon {
+    transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), box-shadow 0.4s ease, background 0.4s ease;
+  }
+  .premium-card:hover .glass-icon {
+    transform: scale(1.08) rotate(-3deg);
+    box-shadow: 0 8px 24px -6px rgba(44,103,158,0.5);
+  }
+
   .dot-pattern {
     background-image: radial-gradient(circle, #e2e8f0 1px, transparent 1px);
     background-size: 24px 24px;

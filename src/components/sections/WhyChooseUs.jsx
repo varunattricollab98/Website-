@@ -56,13 +56,18 @@ export default function WhyChooseUs() {
           {features.map((feature, index) => (
             <motion.div
               key={feature.title}
-              className="group bg-white rounded-2xl p-6 lg:p-7 border border-surface-200 hover:border-primary-200 shadow-soft hover:shadow-card-hover transition-all duration-300"
+              className="premium-card group rounded-2xl p-6 lg:p-7 border border-surface-200 shadow-soft"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.08 }}
+              onMouseMove={(e) => {
+                const r = e.currentTarget.getBoundingClientRect()
+                e.currentTarget.style.setProperty('--mx', `${e.clientX - r.left}px`)
+                e.currentTarget.style.setProperty('--my', `${e.clientY - r.top}px`)
+              }}
             >
-              <div className="w-11 h-11 rounded-xl bg-primary-50 flex items-center justify-center mb-4 group-hover:bg-primary transition-all duration-300">
+              <div className="glass-icon w-11 h-11 rounded-xl bg-primary-50 flex items-center justify-center mb-4 group-hover:bg-primary transition-all duration-300">
                 <feature.icon className="w-5 h-5 text-primary group-hover:text-white transition-colors" />
               </div>
               <h3 className="text-base font-bold text-[#0f1a2e] mb-2">{feature.title}</h3>

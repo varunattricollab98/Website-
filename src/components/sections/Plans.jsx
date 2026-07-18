@@ -65,7 +65,7 @@ export default function Plans() {
           {plans.map((plan, index) => (
             <motion.div
               key={plan.name}
-              className={`relative bg-white rounded-2xl border p-7 transition-all duration-300 hover-lift ${
+              className={`premium-card relative rounded-2xl border p-7 ${
                 plan.popular
                   ? 'border-primary shadow-card-hover ring-1 ring-primary/10 lg:-mt-4'
                   : 'border-surface-200 shadow-soft'
@@ -74,14 +74,19 @@ export default function Plans() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
+              onMouseMove={(e) => {
+                const r = e.currentTarget.getBoundingClientRect()
+                e.currentTarget.style.setProperty('--mx', `${e.clientX - r.left}px`)
+                e.currentTarget.style.setProperty('--my', `${e.clientY - r.top}px`)
+              }}
             >
               {plan.popular && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-4 py-1 rounded-full shadow-lg">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-4 py-1 rounded-full shadow-lg z-10">
                   Most Popular
                 </div>
               )}
 
-              <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-5 ${plan.popular ? 'bg-primary' : 'bg-primary-50'}`}>
+              <div className={`glass-icon w-12 h-12 rounded-xl flex items-center justify-center mb-5 ${plan.popular ? 'bg-primary' : 'bg-primary-50'}`}>
                 <plan.icon className={`w-6 h-6 ${plan.popular ? 'text-white' : 'text-primary'}`} />
               </div>
 
