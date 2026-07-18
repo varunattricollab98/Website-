@@ -65,13 +65,13 @@ export default function Plans() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6 lg:gap-8 items-start">
+        <div className="grid md:grid-cols-3 gap-6 lg:gap-8 items-start pt-6">
           {plans.map((plan, index) => (
             <motion.div
               key={plan.name}
               className={`premium-card relative rounded-2xl border p-7 ${
                 plan.popular
-                  ? 'border-primary shadow-card-hover ring-1 ring-primary/10 lg:-mt-4'
+                  ? 'border-[#f59e0b] shadow-[0_20px_50px_-12px_rgba(245,158,11,0.25)] ring-1 ring-[#f59e0b]/20'
                   : 'border-surface-200 shadow-soft'
               }`}
               initial={{ opacity: 0, y: 20 }}
@@ -85,12 +85,12 @@ export default function Plans() {
               }}
             >
               {plan.popular && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-xs font-bold px-4 py-1 rounded-full shadow-lg z-10">
-                  Most Popular
+                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#f59e0b] to-[#eab308] text-white text-xs font-bold px-5 py-1.5 rounded-full shadow-lg shadow-yellow-400/30 z-10 flex items-center gap-1.5">
+                  <span className="text-base">⭐</span> Most Popular
                 </div>
               )}
 
-              <div className={`glass-icon w-12 h-12 rounded-xl flex items-center justify-center mb-5 ${plan.popular ? 'bg-primary' : 'bg-primary-50'}`}>
+              <div className={`glass-icon w-12 h-12 rounded-xl flex items-center justify-center mb-5 ${plan.popular ? 'bg-gradient-to-br from-[#f59e0b] to-[#d97706]' : 'bg-primary-50'}`}>
                 <plan.icon className={`w-6 h-6 ${plan.popular ? 'text-white' : 'text-primary'}`} />
               </div>
 
@@ -100,8 +100,8 @@ export default function Plans() {
               <div className="space-y-3 mb-6">
                 {plan.features.map((feature) => (
                   <div key={feature} className="flex items-start gap-2.5">
-                    <div className="w-5 h-5 rounded-full bg-primary-50 flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <Check className="w-3 h-3 text-primary" />
+                    <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 ${plan.popular ? 'bg-amber-50' : 'bg-primary-50'}`}>
+                      <Check className={`w-3 h-3 ${plan.popular ? 'text-amber-600' : 'text-primary'}`} />
                     </div>
                     <span className="text-sm text-text leading-snug">{feature}</span>
                   </div>
@@ -111,7 +111,7 @@ export default function Plans() {
               <button
                 className={`w-full py-3 rounded-lg text-sm font-semibold transition-all ${
                   plan.popular
-                    ? 'bg-primary text-white hover:bg-primary-700'
+                    ? 'bg-gradient-to-r from-[#f59e0b] to-[#d97706] text-white hover:from-[#d97706] hover:to-[#b45309] shadow-lg shadow-yellow-500/20'
                     : 'bg-white text-primary border border-primary hover:bg-primary hover:text-white'
                 }`}
               >
