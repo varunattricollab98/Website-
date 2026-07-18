@@ -82,11 +82,13 @@ export default function Plans() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
             >
-              {/* Most Popular — crown on the border line */}
+              {/* Most Popular — premium badge on the border line */}
               {plan.popular && (
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-[#f59e0b] to-[#eab308] text-white text-xs font-bold px-5 py-1.5 rounded-full shadow-lg shadow-yellow-400/30 z-20 flex items-center gap-1.5 whitespace-nowrap">
-                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm0 2h14v2H5v-2z"/></svg>
-                  Most Popular
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
+                  <div className="flex items-center gap-2 bg-[#0f1a2e] text-white text-xs font-bold px-6 py-2 rounded-full shadow-[0_4px_20px_rgba(15,26,46,0.4)] border border-white/10">
+                    <svg className="w-3.5 h-3.5 text-[#f59e0b]" viewBox="0 0 24 24" fill="currentColor"><path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm0 2h14v2H5v-2z"/></svg>
+                    <span className="tracking-wide uppercase">Most Popular</span>
+                  </div>
                 </div>
               )}
 
