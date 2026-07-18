@@ -69,26 +69,22 @@ export default function Plans() {
           {plans.map((plan, index) => (
             <motion.div
               key={plan.name}
-              className={`premium-card relative rounded-2xl border p-7 ${
+              className={`relative rounded-2xl border p-7 ${
                 plan.popular
-                  ? 'border-primary shadow-card-hover ring-1 ring-primary/10'
+                  ? 'border-primary shadow-card-hover ring-1 ring-primary/10 pt-12'
                   : plan.name === 'Business Mailing Address'
                     ? 'border-emerald-200 shadow-soft'
                     : 'border-surface-200 shadow-soft'
               }`}
+              style={{ overflow: 'visible' }}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
-              onMouseMove={(e) => {
-                const r = e.currentTarget.getBoundingClientRect()
-                e.currentTarget.style.setProperty('--mx', `${e.clientX - r.left}px`)
-                e.currentTarget.style.setProperty('--my', `${e.clientY - r.top}px`)
-              }}
             >
               {/* Most Popular — crown on the border line */}
               {plan.popular && (
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-[#f59e0b] to-[#eab308] text-white text-xs font-bold px-5 py-1.5 rounded-full shadow-lg shadow-yellow-400/30 z-10 flex items-center gap-1.5">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-[#f59e0b] to-[#eab308] text-white text-xs font-bold px-5 py-1.5 rounded-full shadow-lg shadow-yellow-400/30 z-20 flex items-center gap-1.5 whitespace-nowrap">
                   <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M5 16L3 5l5.5 5L12 4l3.5 6L21 5l-2 11H5zm0 2h14v2H5v-2z"/></svg>
                   Most Popular
                 </div>
