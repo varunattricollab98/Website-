@@ -82,16 +82,15 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            {/* Water blobs drifting behind the glass */}
-            <div className="water-blob w-64 h-64 -top-10 -right-6" style={{ background: 'radial-gradient(circle, #2c679e, transparent 70%)' }} />
-            <div className="water-blob w-56 h-56 bottom-0 -left-8" style={{ background: 'radial-gradient(circle, #11417c, transparent 70%)', animationDelay: '-5s' }} />
-            <div className="water-blob w-48 h-48 top-1/3 right-1/4" style={{ background: 'radial-gradient(circle, #5b96cc, transparent 70%)', animationDelay: '-9s' }} />
+            {/* Soft static glows behind the glass (no motion — keeps text crisp) */}
+            <div className="glass-glow w-64 h-64 -top-8 -right-4" style={{ background: 'radial-gradient(circle, #93bce0, transparent 70%)' }} />
+            <div className="glass-glow w-56 h-56 -bottom-6 -left-6" style={{ background: 'radial-gradient(circle, #c4d9ee, transparent 70%)' }} />
 
-            <div className="liquid-glass relative rounded-[28px] overflow-hidden">
+            <div className="crystal-glass relative rounded-[28px] overflow-hidden">
               <div className="p-6 lg:p-8 relative z-[2]">
                 {/* Header */}
                 <div className="flex items-start gap-3 mb-6">
-                  <div className="w-11 h-11 rounded-2xl bg-white/60 backdrop-blur-md border border-white/70 flex items-center justify-center flex-shrink-0 shadow-sm">
+                  <div className="w-11 h-11 rounded-2xl bg-primary-50 border border-primary-100 flex items-center justify-center flex-shrink-0 shadow-sm">
                     <Sparkles className="w-5 h-5 text-primary" />
                   </div>
                   <div>
@@ -109,7 +108,7 @@ export default function Hero() {
                     <input
                       type="text"
                       placeholder="Your full name"
-                      className="liquid-field w-full pl-10 pr-4 py-3.5 rounded-2xl text-sm text-text"
+                      className="crystal-field w-full pl-10 pr-4 py-3.5 rounded-2xl text-sm text-text"
                     />
                   </div>
 
@@ -120,7 +119,7 @@ export default function Hero() {
                       <input
                         type="email"
                         placeholder="Email address"
-                        className="liquid-field w-full pl-10 pr-4 py-3.5 rounded-2xl text-sm text-text"
+                        className="crystal-field w-full pl-10 pr-4 py-3.5 rounded-2xl text-sm text-text"
                       />
                     </div>
                     <div className="relative">
@@ -128,7 +127,7 @@ export default function Hero() {
                       <input
                         type="tel"
                         placeholder="Phone number"
-                        className="liquid-field w-full pl-10 pr-4 py-3.5 rounded-2xl text-sm text-text"
+                        className="crystal-field w-full pl-10 pr-4 py-3.5 rounded-2xl text-sm text-text"
                       />
                     </div>
                   </div>
@@ -139,7 +138,7 @@ export default function Hero() {
                     <input
                       type="text"
                       placeholder="Preferred location (e.g. Delhi, Mumbai)"
-                      className="liquid-field w-full pl-10 pr-4 py-3.5 rounded-2xl text-sm text-text"
+                      className="crystal-field w-full pl-10 pr-4 py-3.5 rounded-2xl text-sm text-text"
                     />
                   </div>
 
@@ -148,7 +147,7 @@ export default function Hero() {
                     <textarea
                       rows={3}
                       placeholder="Tell us what you need — GST registration, company registration, mailing address, etc."
-                      className="liquid-field w-full px-4 py-3.5 rounded-2xl text-sm text-text resize-none"
+                      className="crystal-field w-full px-4 py-3.5 rounded-2xl text-sm text-text resize-none"
                     />
                   </div>
 
