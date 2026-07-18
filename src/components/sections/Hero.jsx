@@ -1,12 +1,22 @@
 import { motion } from 'framer-motion'
-import { Check, Phone, Lock, MapPin, Star } from 'lucide-react'
+import { Check, Phone, Lock, MapPin, Star, User, Mail, ChevronDown, Sparkles, Clock, ShieldCheck, ArrowRight } from 'lucide-react'
+import { cities } from '../../data/cities'
+
+const requirements = [
+  'Business Compliance (GST) Registration',
+  'New Company Registration',
+  'Business Mailing Address',
+  'APOB Registration',
+  'Coworking / Meeting Room',
+  'Other — not sure yet',
+]
 
 export default function Hero() {
   return (
     <section id="hero" className="pt-24 lg:pt-28 pb-16 lg:pb-20 bg-white">
       <div className="container-custom">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          
+
           {/* Left Content */}
           <motion.div
             className="pt-4 lg:pt-8"
@@ -14,28 +24,22 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            {/* Trust Badge */}
             <div className="inline-flex items-center gap-2 border border-primary-200 bg-primary-50/50 rounded-full px-4 py-2 mb-8">
-              <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
+              <ShieldCheck className="w-4 h-4 text-primary" />
               <span className="text-sm font-medium text-primary-800">
                 Trusted by 5,000+ businesses across India
               </span>
             </div>
 
-            {/* Headline */}
             <h1 className="text-[2.5rem] md:text-[3rem] lg:text-[3.25rem] font-bold text-[#0f1a2e] leading-[1.15] mb-6 tracking-tight">
               Get a <span className="text-[#2c679e]">Virtual Office</span> Address in all{' '}
               <span className="text-[#2c679e]">28 States</span> of India
             </h1>
 
-            {/* Subtext */}
             <p className="text-base lg:text-lg text-text-light mb-8 max-w-md leading-relaxed">
               Premium addresses for Business Compliance registration, new company registration and business mailing — fully compliant, ready in 2–3 days.
             </p>
 
-            {/* Bullet Points */}
             <div className="space-y-3 mb-8">
               <div className="flex items-center gap-3">
                 <Check className="w-5 h-5 text-primary flex-shrink-0" />
@@ -57,7 +61,6 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Trust Stats */}
             <div className="flex flex-wrap items-center gap-x-6 gap-y-3 mb-4">
               <div className="flex items-center gap-1.5">
                 <div className="flex items-center gap-0.5">
@@ -75,111 +78,128 @@ export default function Hero() {
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <svg className="w-4 h-4 text-text-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-              </svg>
+              <ShieldCheck className="w-4 h-4 text-text-light" />
               <span className="text-sm text-text-light">
                 <strong className="text-text">100%</strong> Business Compliance approval support
               </span>
             </div>
           </motion.div>
 
-          {/* Right — Form */}
+          {/* Right — Premium Form */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <div className="bg-white rounded-2xl border border-gray-200 shadow-card p-6 lg:p-8">
-              {/* Form Header */}
-              <div className="mb-6">
-                <p className="text-xs font-semibold text-text-light uppercase tracking-wider mb-1">
-                  Fill in your requirements
-                </p>
-                <h3 className="text-xl font-bold text-text mb-1">
-                  Get a free expert consultation
-                </h3>
-                <p className="text-sm text-text-light">
-                  Free quote • No obligation • Reply within 10 mins
-                </p>
-              </div>
+            <div className="relative bg-white rounded-3xl border border-gray-200/80 shadow-[0_20px_60px_-15px_rgba(17,65,124,0.25)] overflow-hidden">
+              {/* Gradient accent bar */}
+              <div className="h-1.5 w-full" style={{ background: 'linear-gradient(90deg, #11417c, #2c679e, #11417c)' }} />
 
-              <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-                {/* Name */}
-                <div>
-                  <label className="block text-xs font-semibold text-text-light uppercase tracking-wider mb-1.5">
-                    Name *
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Your full name"
-                    className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all placeholder:text-gray-400"
-                  />
-                </div>
-
-                {/* Email + Phone Row */}
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label className="block text-xs font-semibold text-text-light uppercase tracking-wider mb-1.5">
-                      Email *
-                    </label>
-                    <input
-                      type="email"
-                      placeholder="you@company.com"
-                      className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all placeholder:text-gray-400"
-                    />
+              <div className="p-6 lg:p-8">
+                {/* Header */}
+                <div className="flex items-start gap-3 mb-6">
+                  <div className="w-11 h-11 rounded-xl bg-primary-50 flex items-center justify-center flex-shrink-0">
+                    <Sparkles className="w-5 h-5 text-primary" />
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold text-text-light uppercase tracking-wider mb-1.5">
-                      Phone *
-                    </label>
-                    <input
-                      type="tel"
-                      placeholder="98xxxxxxxx"
-                      className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all placeholder:text-gray-400"
-                    />
+                    <div className="flex items-center gap-2 mb-0.5">
+                      <h3 className="text-xl font-bold text-[#0f1a2e]">Get a Free Consultation</h3>
+                    </div>
+                    <p className="text-sm text-text-light">
+                      Our experts reply within <span className="font-semibold text-primary">10 minutes</span>
+                    </p>
                   </div>
                 </div>
 
-                {/* Preferred Location */}
-                <div>
-                  <label className="block text-xs font-semibold text-text-light uppercase tracking-wider mb-1.5">
-                    Preferred Location
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="e.g. Delhi, Mumbai, Bangalore"
-                    className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all placeholder:text-gray-400"
-                  />
+                <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+                  {/* Name */}
+                  <div className="relative">
+                    <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 peer-focus:text-primary" />
+                    <input
+                      type="text"
+                      placeholder="Your full name"
+                      className="peer w-full pl-10 pr-4 py-3.5 bg-surface-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary focus:bg-white transition-all placeholder:text-gray-400"
+                    />
+                  </div>
+
+                  {/* Email + Phone */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div className="relative">
+                      <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                      <input
+                        type="email"
+                        placeholder="Email address"
+                        className="w-full pl-10 pr-4 py-3.5 bg-surface-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary focus:bg-white transition-all placeholder:text-gray-400"
+                      />
+                    </div>
+                    <div className="relative">
+                      <Phone className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                      <input
+                        type="tel"
+                        placeholder="Phone number"
+                        className="w-full pl-10 pr-4 py-3.5 bg-surface-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary focus:bg-white transition-all placeholder:text-gray-400"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Location dropdown */}
+                  <div className="relative">
+                    <MapPin className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 z-10" />
+                    <select
+                      defaultValue=""
+                      className="w-full pl-10 pr-10 py-3.5 bg-surface-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary focus:bg-white transition-all appearance-none text-gray-500 valid:text-text"
+                    >
+                      <option value="" disabled>Preferred city / location</option>
+                      {cities.map((c) => (
+                        <option key={c.slug} value={c.slug}>{c.name}</option>
+                      ))}
+                      <option value="other">Other city</option>
+                    </select>
+                    <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+                  </div>
+
+                  {/* Requirement dropdown */}
+                  <div className="relative">
+                    <select
+                      defaultValue=""
+                      className="w-full px-4 pr-10 py-3.5 bg-surface-50 border border-gray-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary focus:bg-white transition-all appearance-none text-gray-500"
+                    >
+                      <option value="" disabled>What do you need help with?</option>
+                      {requirements.map((r) => (
+                        <option key={r} value={r}>{r}</option>
+                      ))}
+                    </select>
+                    <ChevronDown className="absolute right-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
+                  </div>
+
+                  {/* Submit */}
+                  <button
+                    type="submit"
+                    className="group w-full py-4 text-white font-bold rounded-xl transition-all text-sm shadow-lg shadow-primary/25 hover:shadow-xl hover:-translate-y-0.5 flex items-center justify-center gap-2"
+                    style={{ background: 'linear-gradient(135deg, #11417c, #2c679e)' }}
+                  >
+                    Get My Free Quote
+                    <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </form>
+
+                {/* Trust badges */}
+                <div className="flex items-center justify-center gap-4 mt-5 pt-5 border-t border-gray-100">
+                  <div className="flex items-center gap-1.5 text-xs text-text-light">
+                    <Lock className="w-3.5 h-3.5 text-accent-green" />
+                    <span>100% Secure</span>
+                  </div>
+                  <div className="w-px h-3 bg-gray-200" />
+                  <div className="flex items-center gap-1.5 text-xs text-text-light">
+                    <Clock className="w-3.5 h-3.5 text-accent-green" />
+                    <span>10-min Reply</span>
+                  </div>
+                  <div className="w-px h-3 bg-gray-200" />
+                  <div className="flex items-center gap-1.5 text-xs text-text-light">
+                    <Check className="w-3.5 h-3.5 text-accent-green" />
+                    <span>No Spam</span>
+                  </div>
                 </div>
-
-                {/* Additional Details */}
-                <div>
-                  <label className="block text-xs font-semibold text-text-light uppercase tracking-wider mb-1.5">
-                    Additional Details
-                  </label>
-                  <textarea
-                    rows={3}
-                    placeholder="I want to apply for Business Compliance Registration, Company Registration, etc."
-                    className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all placeholder:text-gray-400 resize-none"
-                  />
-                </div>
-
-                {/* Submit */}
-                <button
-                  type="submit"
-                  className="w-full py-3.5 bg-[#11417c] hover:bg-[#0e3463] text-white font-semibold rounded-lg transition-colors text-sm shadow-lg"
-                >
-                  Submit Details
-                </button>
-              </form>
-
-              {/* Security note */}
-              <div className="flex items-center justify-center gap-2 mt-4">
-                <Lock className="w-3.5 h-3.5 text-gray-400" />
-                <span className="text-xs text-gray-400">
-                  Your details are safe and only used to contact you.
-                </span>
               </div>
             </div>
           </motion.div>
