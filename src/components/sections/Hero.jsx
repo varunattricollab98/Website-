@@ -82,13 +82,6 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            {/* Background that makes the glass visible */}
-            <div className="absolute -inset-4 rounded-[36px] bg-gradient-to-br from-[#e8f1fa] via-[#f0f7ff] to-[#dce8f5]" />
-            
-            {/* Subtle decorative glows */}
-            <div className="glass-glow w-48 h-48 -top-6 -right-6" style={{ background: 'radial-gradient(circle, #b3d4f0, transparent 70%)' }} />
-            <div className="glass-glow w-40 h-40 -bottom-4 -left-4" style={{ background: 'radial-gradient(circle, #c4d9ee, transparent 70%)' }} />
-
             <div className="crystal-glass relative rounded-[24px]">
               <div className="p-6 lg:p-8 relative z-[2]">
                 {/* Header */}
