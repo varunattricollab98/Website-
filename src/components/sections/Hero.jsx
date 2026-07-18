@@ -25,9 +25,9 @@ export default function Hero() {
             </div>
 
             {/* Headline */}
-            <h1 className="text-[2.5rem] md:text-[3rem] lg:text-[3.25rem] font-bold text-text leading-[1.15] mb-6 tracking-tight">
-              Get a <span className="text-primary">Virtual Office</span> Address<br className="hidden lg:block" />
-              in all <span className="text-primary">28 States</span> of India
+            <h1 className="text-[2.5rem] md:text-[3rem] lg:text-[3.25rem] font-bold text-[#0f1e34] leading-[1.15] mb-6 tracking-tight">
+              Get a <span className="text-[#2b58d4]">Virtual Office</span> Address in all{' '}
+              <span className="text-[#2b58d4]">28 States</span> of India
             </h1>
 
             {/* Subtext */}
