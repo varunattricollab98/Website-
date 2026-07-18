@@ -1,28 +1,22 @@
 import { motion } from 'framer-motion'
-import { MapPin, ArrowRight } from 'lucide-react'
+import { ChevronRight } from 'lucide-react'
 import { cities } from '../../data/cities'
 
 export default function CityGrid() {
   return (
-    <section className="section-padding bg-surface-50 relative">
-      <div className="absolute inset-0 dot-pattern opacity-30" />
-      
-      <div className="container-custom relative">
+    <section id="cities" className="section-padding bg-surface-50">
+      <div className="container-custom">
         <motion.div
-          className="text-center mb-12"
+          className="text-center mb-12 max-w-2xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <div className="inline-flex items-center gap-2 bg-primary-50 rounded-full px-4 py-1.5 mb-4">
-            <span className="w-1.5 h-1.5 bg-primary rounded-full" />
-            <span className="text-xs font-semibold text-primary uppercase tracking-wider">Locations</span>
-          </div>
-          <h2 className="text-3xl lg:text-4xl font-bold text-text mb-4">
-            200+ Addresses Across <span className="gradient-text">All 28 States</span>
+          <h2 className="text-3xl lg:text-4xl font-bold text-[#0f1a2e] mb-4">
+            Virtual Office Locations Across India
           </h2>
-          <p className="text-text-light text-lg max-w-xl mx-auto">
-            Click a city to explore available addresses and pricing.
+          <p className="text-text-light text-lg">
+            Premium business addresses in 200+ locations across India. Click a city to enquire.
           </p>
         </motion.div>
 
@@ -30,40 +24,37 @@ export default function CityGrid() {
           {cities.map((city, index) => (
             <motion.a
               key={city.name}
-              href={`/virtual-office/${city.slug || city.name.toLowerCase()}`}
-              className="group relative bg-white rounded-xl p-5 border border-surface-200 hover:border-primary-300 hover:shadow-card-hover transition-all duration-300 overflow-hidden"
+              href={`/virtual-office/${city.slug}`}
+              className="group flex items-center justify-between bg-white rounded-xl p-4 lg:p-5 border border-surface-200 hover:border-primary hover:shadow-card transition-all duration-300"
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.03 }}
             >
-              {/* Hover gradient */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-              
-              <div className="relative">
-                <div className="flex items-center gap-2 mb-2">
-                  <MapPin className="w-4 h-4 text-primary" />
-                  <span className="text-sm font-bold text-text group-hover:text-primary transition-colors">
-                    {city.name}
-                  </span>
+              <div>
+                <div className="text-sm font-bold text-[#0f1a2e] group-hover:text-primary transition-colors">
+                  {city.name}
                 </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs text-text-light">Starting ₹{city.price}/mo</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-text-muted group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
+                <div className="text-xs text-text-light mt-0.5">
+                  Starting ₹{city.price.toLocaleString()}/mo
                 </div>
               </div>
+              <ChevronRight className="w-5 h-5 text-text-muted group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
             </motion.a>
           ))}
         </div>
 
-        <motion.p
-          className="text-center text-sm text-text-light mt-8 bg-white border border-surface-200 rounded-xl p-4 max-w-lg mx-auto"
+        <motion.div
+          className="text-center mt-8 bg-white border border-surface-200 rounded-xl p-5 max-w-2xl mx-auto"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
-          Don't see your city? We may still have addresses available — our network covers <strong className="text-text">200+ locations across all 28 states</strong>.
-        </motion.p>
+          <p className="text-sm text-text-light">
+            Don't see your city? We may still have addresses available there — our network covers{' '}
+            <strong className="text-text">200+ locations across all 28 states</strong>.
+          </p>
+        </motion.div>
       </div>
     </section>
   )

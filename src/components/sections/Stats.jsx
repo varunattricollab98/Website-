@@ -1,8 +1,7 @@
 import { motion } from 'framer-motion'
-import { Users, MapPin, Map, TrendingUp, Star } from 'lucide-react'
 import { useState, useEffect, useRef } from 'react'
 
-function AnimatedNumber({ target, suffix = '' }) {
+function AnimatedNumber({ target, suffix = '', decimal = false }) {
   const [count, setCount] = useState(0)
   const ref = useRef(null)
   const [started, setStarted] = useState(false)
@@ -13,7 +12,8 @@ function AnimatedNumber({ target, suffix = '' }) {
         if (entry.isIntersecting && !started) {
           setStarted(true)
           const duration = 2000
-          const increment = target / (duration / 16)
+          const steps = duration / 16
+          const increment = target / steps
           let current = 0
           const timer = setInterval(() => {
             current += increment
@@ -21,7 +21,7 @@ function AnimatedNumber({ target, suffix = '' }) {
               setCount(target)
               clearInterval(timer)
             } else {
-              setCount(Math.floor(current))
+              setCount(current)
             }
           }, 16)
         }
@@ -32,59 +32,54 @@ function AnimatedNumber({ target, suffix = '' }) {
     return () => observer.disconnect()
   }, [target, started])
 
-  return <span ref={ref}>{count.toLocaleString()}{suffix}</span>
+  return (
+    <span ref={ref}>
+      {decimal ? count.toFixed(1) : Math.floor(count).toLocaleString()}{suffix}
+    </span>
+  )
 }
 
 const stats = [
-  { icon: Users, number: 5000, suffix: '+', label: 'Businesses Served', color: 'from-blue-500 to-blue-600' },
-  { icon: MapPin, number: 200, suffix: '+', label: 'Premium Addresses', color: 'from-emerald-500 to-emerald-600' },
-  { icon: Map, number: 28, suffix: '', label: 'States Covered', color: 'from-purple-500 to-purple-600' },
-  { icon: TrendingUp, number: 97, suffix: '%', label: 'Approval Rate', color: 'from-orange-500 to-orange-600' },
-  { icon: Star, number: 4.9, suffix: '/5', label: 'Google Rating', color: 'from-yellow-500 to-yellow-600', isDecimal: true },
+  { target: 5000, suffix: '+', label: 'Businesses Served' },
+  { target: 200, suffix: '+', label: 'Premium Addresses' },
+  { target: 28, suffix: '', label: 'States Covered' },
+  { target: 4.9, suffix: '/5', label: 'Google Rating', decimal: true },
 ]
 
 export default function Stats() {
   return (
-    <section className="py-16 lg:py-20 bg-surface-50 relative">
-      {/* Background pattern */}
-      <div className="absolute inset-0 dot-pattern opacity-50" />
-      
+    <section className="py-16 lg:py-20 bg-[#11417c] relative overflow-hidden">
+      {/* Decorative */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-72 h-72 bg-primary-400/10 rounded-full blur-3xl" />
+
       <div className="container-custom relative">
-        <motion.div 
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-6"
+        <motion.div
+          className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
         >
+          <h2 className="text-2xl lg:text-3xl font-bold text-white">Our Numbers</h2>
+        </motion.div>
+
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
-              className="relative group bg-white rounded-2xl p-6 text-center shadow-soft hover:shadow-card-hover transition-all duration-300 border border-surface-100 hover:border-primary-100"
+              className="text-center"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
             >
-              {/* Icon */}
-              <div className={`inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br ${stat.color} mb-4 shadow-lg`}>
-                <stat.icon className="w-5 h-5 text-white" />
+              <div className="text-4xl lg:text-5xl font-extrabold text-white mb-2">
+                <AnimatedNumber target={stat.target} suffix={stat.suffix} decimal={stat.decimal} />
               </div>
-              
-              {/* Number */}
-              <div className="text-3xl lg:text-4xl font-extrabold text-text mb-1">
-                {stat.isDecimal ? (
-                  <span>{stat.number}{stat.suffix}</span>
-                ) : (
-                  <AnimatedNumber target={stat.number} suffix={stat.suffix} />
-                )}
-              </div>
-              
-              {/* Label */}
-              <div className="text-sm text-text-light font-medium">{stat.label}</div>
+              <div className="text-sm lg:text-base text-blue-200/80 font-medium">{stat.label}</div>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   )

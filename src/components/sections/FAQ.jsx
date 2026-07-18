@@ -47,8 +47,8 @@ export default function FAQ() {
                 <span className="w-1.5 h-1.5 bg-primary rounded-full" />
                 <span className="text-xs font-semibold text-primary uppercase tracking-wider">FAQ</span>
               </div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-text mb-4">
-                Got Questions?
+              <h2 className="text-3xl lg:text-4xl font-bold text-[#0f1a2e] mb-4">
+                Frequently Asked Questions
               </h2>
               <p className="text-text-light mb-6">
                 Everything you need to know before getting your virtual office. Can't find what you're looking for?

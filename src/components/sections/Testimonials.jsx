@@ -16,11 +16,11 @@ export default function Testimonials() {
             <span className="w-1.5 h-1.5 bg-primary rounded-full" />
             <span className="text-xs font-semibold text-primary uppercase tracking-wider">Testimonials</span>
           </div>
-          <h2 className="text-3xl lg:text-4xl font-bold text-text mb-4">
-            Loved by <span className="gradient-text">5,000+ Businesses</span>
+          <h2 className="text-3xl lg:text-4xl font-bold text-[#0f1a2e] mb-4">
+            What Our Customers Say
           </h2>
           <p className="text-text-light text-lg max-w-xl mx-auto">
-            Real customers. Real results. Here's what they say about us.
+            Real customers. Real results.
           </p>
         </motion.div>
 

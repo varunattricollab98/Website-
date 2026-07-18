@@ -4,57 +4,51 @@ import { MapPin, FileCheck, Zap, UserCheck, IndianRupee, Globe } from 'lucide-re
 const features = [
   {
     icon: MapPin,
-    title: 'Premium Addresses',
-    description: 'Real, verified commercial addresses across India\'s top business hubs.',
+    title: 'Premium addresses',
+    description: "Real, verified commercial addresses across India's top business hubs.",
   },
   {
     icon: FileCheck,
-    title: 'GST-Ready Paperwork',
-    description: '100% compliant NOC, rent agreement & utility bills accepted by all officers.',
+    title: 'Business Compliance-ready paperwork',
+    description: '100% compliant NOC, rent agreement & utility bills accepted by Business Compliance officers.',
   },
   {
     icon: Zap,
-    title: 'Fast Turnaround',
-    description: 'KYC to address handover in just 2-3 working days. No delays.',
+    title: 'Fast turnaround',
+    description: 'KYC to address handover in just 3–5 working days.',
   },
   {
     icon: UserCheck,
-    title: 'Dedicated Manager',
-    description: 'A single point of contact for setup, mail handling, and renewals.',
+    title: 'Dedicated manager',
+    description: 'A single point of contact for setup, mail handling and renewals.',
   },
   {
     icon: IndianRupee,
-    title: 'Transparent Pricing',
+    title: 'Transparent pricing',
     description: 'No hidden fees. Pay-as-you-grow plans starting at ₹699/month.',
   },
   {
     icon: Globe,
-    title: 'Pan-India Coverage',
+    title: 'Pan-India coverage',
     description: '200+ addresses in all 28 states — expand wherever your customers are.',
   },
 ]
 
 export default function WhyChooseUs() {
   return (
-    <section className="section-padding bg-surface-50 relative">
-      <div className="absolute inset-0 grid-pattern opacity-40" />
-      
-      <div className="container-custom relative">
+    <section className="section-padding bg-surface-50">
+      <div className="container-custom">
         <motion.div
-          className="text-center mb-14"
+          className="text-center mb-14 max-w-2xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <div className="inline-flex items-center gap-2 bg-primary-50 rounded-full px-4 py-1.5 mb-4">
-            <span className="w-1.5 h-1.5 bg-primary rounded-full" />
-            <span className="text-xs font-semibold text-primary uppercase tracking-wider">Why Us</span>
-          </div>
-          <h2 className="text-3xl lg:text-4xl font-bold text-text mb-4">
-            Real Offices. Real Paperwork. <span className="gradient-text">Real People.</span>
+          <h2 className="text-3xl lg:text-4xl font-bold text-[#0f1a2e] mb-4">
+            Why Businesses Choose Us
           </h2>
-          <p className="text-text-light text-lg max-w-xl mx-auto">
-            What makes EaseMyOffice the most trusted platform for virtual offices in India.
+          <p className="text-text-light text-lg">
+            Real offices. Real paperwork. Real people behind every address.
           </p>
         </motion.div>
 
@@ -68,10 +62,10 @@ export default function WhyChooseUs() {
               viewport={{ once: true }}
               transition={{ delay: index * 0.08 }}
             >
-              <div className="w-11 h-11 rounded-xl bg-primary-50 flex items-center justify-center mb-4 group-hover:bg-primary group-hover:shadow-glow transition-all duration-300">
+              <div className="w-11 h-11 rounded-xl bg-primary-50 flex items-center justify-center mb-4 group-hover:bg-primary transition-all duration-300">
                 <feature.icon className="w-5 h-5 text-primary group-hover:text-white transition-colors" />
               </div>
-              <h3 className="text-base font-bold text-text mb-2">{feature.title}</h3>
+              <h3 className="text-base font-bold text-[#0f1a2e] mb-2">{feature.title}</h3>
               <p className="text-sm text-text-light leading-relaxed">{feature.description}</p>
             </motion.div>
           ))}
