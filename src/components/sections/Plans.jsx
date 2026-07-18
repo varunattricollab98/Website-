@@ -53,10 +53,14 @@ export default function Plans() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl lg:text-4xl font-bold text-[#0f1a2e] mb-4">
-            Choose the Right Plan for Your Business
+          <div className="inline-flex items-center gap-2 bg-primary-50 border border-primary-100 rounded-full px-4 py-1.5 mb-5">
+            <span className="w-1.5 h-1.5 bg-primary rounded-full" />
+            <span className="text-xs font-semibold text-primary uppercase tracking-wider">Our Plans</span>
+          </div>
+          <h2 className="text-3xl lg:text-[2.5rem] font-bold text-[#0f1a2e] mb-4 leading-tight">
+            Choose the Right Plan<br className="hidden sm:block" /> for Your Business
           </h2>
-          <p className="text-text-light text-lg">
+          <p className="text-text-light text-base lg:text-lg max-w-lg mx-auto">
             Flexible, affordable plans designed to help your business grow — pick what fits.
           </p>
         </motion.div>
