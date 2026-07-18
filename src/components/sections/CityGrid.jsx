@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ChevronRight } from 'lucide-react'
+import { ChevronRight, MapPin } from 'lucide-react'
 import { cities } from '../../data/cities'
 
 export default function CityGrid() {
@@ -20,31 +20,47 @@ export default function CityGrid() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 lg:gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-5">
           {cities.map((city, index) => (
             <motion.a
               key={city.name}
               href={`/virtual-office/${city.slug}`}
-              className="premium-card group flex items-center justify-between rounded-xl p-4 lg:p-5 border border-surface-200"
+              className="group relative rounded-2xl overflow-hidden aspect-[5/4] hdr-frame hdr-glint block"
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.03 }}
-              onMouseMove={(e) => {
-                const r = e.currentTarget.getBoundingClientRect()
-                e.currentTarget.style.setProperty('--mx', `${e.clientX - r.left}px`)
-                e.currentTarget.style.setProperty('--my', `${e.clientY - r.top}px`)
-              }}
             >
-              <div>
-                <div className="text-sm font-bold text-[#0f1a2e] group-hover:text-primary transition-colors">
-                  {city.name}
+              {/* Fallback gradient */}
+              <div className="absolute inset-0 bg-gradient-to-br from-[#11417c] to-[#2c679e]" />
+
+              {/* HDR image */}
+              <img
+                src={city.image}
+                alt={`Virtual office in ${city.name}`}
+                loading="lazy"
+                className="hdr-img absolute inset-0 w-full h-full object-cover"
+                onError={(e) => { e.currentTarget.style.display = 'none' }}
+              />
+
+              {/* Overlay */}
+              <div className="hdr-overlay absolute inset-0 z-[1]" />
+
+              {/* Content */}
+              <div className="absolute inset-0 z-[3] flex flex-col justify-end p-4">
+                <div className="flex items-center gap-1.5 mb-0.5">
+                  <MapPin className="w-4 h-4 text-blue-200" />
+                  <span className="text-base font-bold text-white drop-shadow-sm">{city.name}</span>
                 </div>
-                <div className="text-xs text-text-light mt-0.5">
-                  Starting ₹{city.price.toLocaleString()}/mo
+                <div className="flex items-center justify-between">
+                  <span className="text-xs text-white/85 drop-shadow-sm">
+                    Starting ₹{city.price.toLocaleString()}/mo
+                  </span>
+                  <span className="w-6 h-6 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center group-hover:bg-white transition-colors">
+                    <ChevronRight className="w-3.5 h-3.5 text-[#11417c] group-hover:translate-x-0.5 transition-transform" />
+                  </span>
                 </div>
               </div>
-              <ChevronRight className="w-5 h-5 text-text-muted group-hover:text-primary group-hover:translate-x-0.5 transition-all" />
             </motion.a>
           ))}
         </div>

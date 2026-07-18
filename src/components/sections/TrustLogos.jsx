@@ -1,36 +1,45 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 
-// To use official logos: drop files in /public/images/logos/ named exactly as `file` below.
-// If a logo image is missing, the brand name text shows automatically (graceful fallback).
+// Logos are pulled live from each brand's own domain via Clearbit's logo API.
+// If a logo can't be fetched, the brand name shows automatically (graceful fallback).
+// To use your own official files instead, drop them in /public/images/logos/ and set `local`.
 const brands = [
-  { name: 'Shiprocket', file: '/images/logos/shiprocket.png' },
-  { name: 'IndiaMART', file: '/images/logos/indiamart.png' },
-  { name: 'Verizon', file: '/images/logos/verizon.png' },
-  { name: "Dr. Reddy's", file: '/images/logos/drreddys.png' },
-  { name: 'EarthTronEV', file: '/images/logos/earthtronev.png' },
-  { name: 'Udaan', file: '/images/logos/udaan.png' },
-  { name: 'Omnicuris', file: '/images/logos/omnicuris.png' },
-  { name: 'Kalki Fashion', file: '/images/logos/kalki.png' },
-  { name: 'Tuckit', file: '/images/logos/tuckit.png' },
-  { name: 'Rudra Gas Ltd.', file: '/images/logos/rudragas.png' },
-  { name: 'Xpressbees', file: '/images/logos/xpressbees.png' },
-  { name: 'Bizzstay', file: '/images/logos/bizzstay.png' },
+  { name: 'Shiprocket', domain: 'shiprocket.in' },
+  { name: 'IndiaMART', domain: 'indiamart.com' },
+  { name: 'Verizon', domain: 'verizon.com' },
+  { name: "Dr. Reddy's", domain: 'drreddys.com' },
+  { name: 'Udaan', domain: 'udaan.com' },
+  { name: 'Omnicuris', domain: 'omnicuris.com' },
+  { name: 'Kalki Fashion', domain: 'kalkifashion.com' },
+  { name: 'Xpressbees', domain: 'xpressbees.com' },
+  { name: 'EarthtronEV', domain: 'earthtronev.com' },
+  { name: 'Tuckit', domain: 'tuckit.in' },
+  { name: 'Rudra Gas', domain: 'rudragas.com' },
+  { name: 'Bizzstay', domain: 'bizzstay.com' },
 ]
 
 function BrandLogo({ brand }) {
   const [failed, setFailed] = useState(false)
+  const src = brand.local || `https://logo.clearbit.com/${brand.domain}?size=128`
 
   return (
-    <div className="premium-card flex items-center justify-center py-6 px-4 bg-white border border-surface-200 rounded-xl">
+    <div
+      className="premium-card flex items-center justify-center h-24 px-5 bg-white border border-surface-200 rounded-2xl"
+      onMouseMove={(e) => {
+        const r = e.currentTarget.getBoundingClientRect()
+        e.currentTarget.style.setProperty('--mx', `${e.clientX - r.left}px`)
+        e.currentTarget.style.setProperty('--my', `${e.clientY - r.top}px`)
+      }}
+    >
       {failed ? (
-        <span className="text-base lg:text-lg font-bold text-text-light">{brand.name}</span>
+        <span className="text-base lg:text-lg font-bold text-[#11417c]">{brand.name}</span>
       ) : (
         <img
-          src={brand.file}
+          src={src}
           alt={brand.name}
           loading="lazy"
-          className="max-h-8 lg:max-h-10 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+          className="logo-hdr max-h-10 lg:max-h-12 w-auto object-contain"
           onError={() => setFailed(true)}
         />
       )}
@@ -40,14 +49,19 @@ function BrandLogo({ brand }) {
 
 export default function TrustLogos() {
   return (
-    <section className="py-16 lg:py-20 bg-surface-50">
-      <div className="container-custom">
+    <section className="py-16 lg:py-20 bg-surface-50 relative">
+      <div className="absolute inset-0 dot-pattern opacity-30" />
+      <div className="container-custom relative">
         <motion.div
-          className="text-center mb-10"
+          className="text-center mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
+          <div className="inline-flex items-center gap-2 bg-primary-50 rounded-full px-4 py-1.5 mb-4">
+            <span className="w-1.5 h-1.5 bg-primary rounded-full" />
+            <span className="text-xs font-semibold text-primary uppercase tracking-wider">Social Proof</span>
+          </div>
           <h2 className="text-2xl lg:text-3xl font-bold text-[#0f1a2e] mb-2">
             Trusted by Founders &amp; Finance Teams
           </h2>
@@ -64,13 +78,6 @@ export default function TrustLogos() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.04 }}
-              onMouseMove={(e) => {
-                const el = e.currentTarget.querySelector('.premium-card')
-                if (!el) return
-                const r = el.getBoundingClientRect()
-                el.style.setProperty('--mx', `${e.clientX - r.left}px`)
-                el.style.setProperty('--my', `${e.clientY - r.top}px`)
-              }}
             >
               <BrandLogo brand={brand} />
             </motion.div>

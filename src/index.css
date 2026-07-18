@@ -93,6 +93,57 @@
     box-shadow: 0 8px 24px -6px rgba(44,103,158,0.5);
   }
 
+  /* Premium HDR image treatment — rich contrast, saturation, clarity */
+  .hdr-img {
+    filter: contrast(1.12) saturate(1.28) brightness(1.04);
+    transition: filter 0.5s ease, transform 0.7s cubic-bezier(0.22,1,0.36,1);
+    will-change: transform, filter;
+  }
+  .group:hover .hdr-img {
+    filter: contrast(1.18) saturate(1.4) brightness(1.06);
+    transform: scale(1.08);
+  }
+
+  /* Cinematic overlay: brand-navy graded top + rich darken bottom for text legibility */
+  .hdr-overlay {
+    background:
+      linear-gradient(180deg, rgba(17,65,124,0.15) 0%, transparent 30%, transparent 55%, rgba(8,20,40,0.35) 78%, rgba(8,20,40,0.82) 100%);
+    mix-blend-mode: normal;
+  }
+
+  /* Subtle vignette + inner ring for that premium framed look */
+  .hdr-frame {
+    box-shadow:
+      inset 0 0 0 1px rgba(255,255,255,0.12),
+      inset 0 -60px 60px -30px rgba(8,20,40,0.5),
+      0 22px 44px -14px rgba(17,65,124,0.4);
+  }
+
+  /* Sheen glint that sweeps across image cards on hover */
+  .hdr-glint::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.28) 48%, transparent 60%);
+    transform: translateX(-120%);
+    transition: transform 0.9s cubic-bezier(0.22,1,0.36,1);
+    pointer-events: none;
+    z-index: 2;
+  }
+  .group:hover .hdr-glint::after {
+    transform: translateX(120%);
+  }
+
+  /* Premium logo tile — crisp, full-color, soft depth */
+  .logo-hdr {
+    filter: drop-shadow(0 2px 6px rgba(17,65,124,0.12)) contrast(1.05) saturate(1.1);
+    transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), filter 0.4s ease;
+  }
+  .premium-card:hover .logo-hdr {
+    transform: scale(1.06);
+    filter: drop-shadow(0 6px 14px rgba(17,65,124,0.22)) contrast(1.1) saturate(1.25);
+  }
+
   .dot-pattern {
     background-image: radial-gradient(circle, #e2e8f0 1px, transparent 1px);
     background-size: 24px 24px;
