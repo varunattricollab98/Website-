@@ -25,9 +25,9 @@ export default function Hero() {
             </div>
 
             {/* Headline */}
-            <h1 className="text-[2.5rem] md:text-[3rem] lg:text-[3.25rem] font-bold text-[#0f1e34] leading-[1.15] mb-6 tracking-tight">
-              Get a <span className="text-[#2b58d4]">Virtual Office</span> Address in all{' '}
-              <span className="text-[#2b58d4]">28 States</span> of India
+            <h1 className="text-[2.5rem] md:text-[3rem] lg:text-[3.25rem] font-bold text-[#0f1a2e] leading-[1.15] mb-6 tracking-tight">
+              Get a <span className="text-[#2c679e]">Virtual Office</span> Address in all{' '}
+              <span className="text-[#2c679e]">28 States</span> of India
             </h1>
 
             {/* Subtext */}
@@ -168,7 +168,7 @@ export default function Hero() {
                 {/* Submit */}
                 <button
                   type="submit"
-                  className="w-full py-3.5 bg-[#1a2e44] hover:bg-[#162538] text-white font-semibold rounded-lg transition-colors text-sm shadow-lg"
+                  className="w-full py-3.5 bg-[#11417c] hover:bg-[#0e3463] text-white font-semibold rounded-lg transition-colors text-sm shadow-lg"
                 >
                   Submit Details
                 </button>

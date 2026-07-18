@@ -58,7 +58,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center">
             <a
               href="tel:8882735038"
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#1a2e44] text-white text-sm font-semibold rounded-lg hover:bg-[#162538] transition-colors"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#11417c] text-white text-sm font-semibold rounded-lg hover:bg-[#0e3463] transition-colors"
             >
               <Phone className="w-4 h-4" />
               888-273-5038
@@ -93,7 +93,7 @@ export default function Navbar() {
             <div className="pt-3 border-t border-gray-100">
               <a
                 href="tel:8882735038"
-                className="flex items-center justify-center gap-2 px-5 py-3 bg-[#1a2e44] text-white text-sm font-semibold rounded-lg"
+                className="flex items-center justify-center gap-2 px-5 py-3 bg-[#11417c] text-white text-sm font-semibold rounded-lg"
               >
                 <Phone className="w-4 h-4" />
                 888-273-5038
