@@ -1,234 +1,185 @@
 import { motion } from 'framer-motion'
-import { Check, ChevronDown, ArrowRight, Star, Shield, Zap } from 'lucide-react'
-import { useState, useEffect, useRef } from 'react'
-
-const cityOptions = [
-  'Delhi', 'Mumbai', 'Bangalore', 'Gurgaon', 'Noida', 'Pune',
-  'Hyderabad', 'Chennai', 'Ahmedabad', 'Kolkata', 'Jaipur',
-  'Chandigarh', 'Lucknow', 'Indore', 'Kochi', 'Bhubaneswar',
-]
-
-const serviceOptions = [
-  'Virtual Office - GST Registration',
-  'Virtual Office - Company Registration',
-  'Virtual Office - Mailing Address',
-  'Coworking Space',
-  'Meeting Room',
-  'CA Services',
-]
-
-function AnimatedCounter({ target, suffix = '', duration = 2000 }) {
-  const [count, setCount] = useState(0)
-  const ref = useRef(null)
-  const [hasAnimated, setHasAnimated] = useState(false)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated) {
-          setHasAnimated(true)
-          let start = 0
-          const increment = target / (duration / 16)
-          const timer = setInterval(() => {
-            start += increment
-            if (start >= target) {
-              setCount(target)
-              clearInterval(timer)
-            } else {
-              setCount(Math.floor(start))
-            }
-          }, 16)
-        }
-      },
-      { threshold: 0.5 }
-    )
-    if (ref.current) observer.observe(ref.current)
-    return () => observer.disconnect()
-  }, [target, duration, hasAnimated])
-
-  return (
-    <span ref={ref}>
-      {count.toLocaleString()}{suffix}
-    </span>
-  )
-}
+import { Check, Phone, Lock, MapPin, Star } from 'lucide-react'
 
 export default function Hero() {
   return (
-    <section id="hero" className="relative min-h-[90vh] flex items-center overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-hero-pattern" />
-      <div className="absolute inset-0 bg-hero-mesh" />
-      
-      {/* Decorative elements */}
-      <div className="absolute top-20 right-10 w-[600px] h-[600px] bg-primary-400/10 rounded-full blur-3xl" />
-      <div className="absolute bottom-10 left-10 w-[400px] h-[400px] bg-accent-green/5 rounded-full blur-3xl" />
-      
-      {/* Grid pattern overlay */}
-      <div className="absolute inset-0 opacity-[0.03]" style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h60v60H0z' fill='none' stroke='white' stroke-width='0.5'/%3E%3C/svg%3E")`
-      }} />
-
-      <div className="container-custom relative z-10 py-28 lg:py-32">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+    <section id="hero" className="pt-24 lg:pt-28 pb-16 lg:pb-20 bg-white">
+      <div className="container-custom">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
           
-          {/* Left Content — 7 cols */}
+          {/* Left Content */}
           <motion.div
-            className="lg:col-span-7"
-            initial={{ opacity: 0, y: 30 }}
+            className="pt-4 lg:pt-8"
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: 'easeOut' }}
+            transition={{ duration: 0.5 }}
           >
-            {/* Badge */}
-            <motion.div 
-              className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 mb-8"
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2 }}
-            >
-              <div className="flex items-center gap-0.5">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
-                ))}
-              </div>
-              <span className="text-sm font-medium text-white/90">
-                4.9/5 from 5,000+ businesses
+            {/* Trust Badge */}
+            <div className="inline-flex items-center gap-2 border border-primary-200 bg-primary-50/50 rounded-full px-4 py-2 mb-8">
+              <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+              <span className="text-sm font-medium text-primary-800">
+                Trusted by 5,000+ businesses across India
               </span>
-            </motion.div>
+            </div>
 
             {/* Headline */}
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-[4rem] font-extrabold text-white leading-[1.1] mb-6 tracking-tight">
-              India's #1 Platform for{' '}
-              <span className="relative">
-                <span className="relative z-10 text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-blue-100 to-emerald-200">
-                  Virtual Office
-                </span>
-              </span>{' '}
-              & Business Registration
+            <h1 className="text-[2.5rem] md:text-[3rem] lg:text-[3.25rem] font-bold text-text leading-[1.15] mb-6 tracking-tight">
+              Get a <span className="text-primary">Virtual Office</span> Address<br className="hidden lg:block" />
+              in all <span className="text-primary">28 States</span> of India
             </h1>
 
             {/* Subtext */}
-            <p className="text-lg lg:text-xl text-blue-100/80 mb-10 max-w-xl leading-relaxed">
-              Premium business addresses across all 28 states. Get your GST registration, 
-              company incorporation, or mailing address — fully compliant, ready in 2-3 days.
+            <p className="text-base lg:text-lg text-text-light mb-8 max-w-md leading-relaxed">
+              Premium addresses for Business Compliance registration, new company registration and business mailing — fully compliant, ready in 2–3 days.
             </p>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4 mb-12">
-              <a
-                href="#pricing"
-                className="group inline-flex items-center gap-2 px-8 py-4 bg-white text-primary font-bold rounded-xl hover:bg-blue-50 shadow-2xl shadow-black/20 transition-all duration-200 text-base"
-              >
-                View Plans & Pricing
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
-              <a
-                href="#how-it-works"
-                className="inline-flex items-center gap-2 px-8 py-4 text-white font-semibold rounded-xl border border-white/20 hover:bg-white/10 backdrop-blur-sm transition-all duration-200 text-base"
-              >
-                How It Works
-              </a>
+            {/* Bullet Points */}
+            <div className="space-y-3 mb-8">
+              <div className="flex items-center gap-3">
+                <Check className="w-5 h-5 text-primary flex-shrink-0" />
+                <span className="text-[15px] text-text">
+                  Register a <strong>New Company</strong> with a verified address.
+                </span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Check className="w-5 h-5 text-primary flex-shrink-0" />
+                <span className="text-[15px] text-text">
+                  Get Virtual Office for <strong>Business Compliance Registration.</strong>
+                </span>
+              </div>
+              <div className="flex items-center gap-3">
+                <Check className="w-5 h-5 text-primary flex-shrink-0" />
+                <span className="text-[15px] text-text">
+                  A premium <strong>Mailing Address</strong> for your business.
+                </span>
+              </div>
             </div>
 
-            {/* Mini Stats Row */}
-            <div className="grid grid-cols-3 gap-6 max-w-lg">
-              <div className="text-center">
-                <div className="text-2xl lg:text-3xl font-bold text-white">
-                  <AnimatedCounter target={5000} suffix="+" />
+            {/* Trust Stats */}
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 mb-4">
+              <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-0.5">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                  ))}
                 </div>
-                <div className="text-xs lg:text-sm text-blue-200/70 mt-1">Businesses Served</div>
+                <span className="text-sm font-semibold text-text">4.9/5</span>
+                <span className="text-sm text-text-light">Google Reviews</span>
               </div>
-              <div className="text-center border-x border-white/10">
-                <div className="text-2xl lg:text-3xl font-bold text-white">
-                  <AnimatedCounter target={200} suffix="+" />
-                </div>
-                <div className="text-xs lg:text-sm text-blue-200/70 mt-1">Addresses</div>
+              <div className="flex items-center gap-1.5">
+                <MapPin className="w-4 h-4 text-text-light" />
+                <span className="text-sm font-semibold text-text">200+</span>
+                <span className="text-sm text-text-light">premium addresses</span>
               </div>
-              <div className="text-center">
-                <div className="text-2xl lg:text-3xl font-bold text-white">
-                  <AnimatedCounter target={97} suffix="%" />
-                </div>
-                <div className="text-xs lg:text-sm text-blue-200/70 mt-1">Approval Rate</div>
-              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <svg className="w-4 h-4 text-text-light" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+              <span className="text-sm text-text-light">
+                <strong className="text-text">100%</strong> Business Compliance approval support
+              </span>
             </div>
           </motion.div>
 
-          {/* Right — Form Card — 5 cols */}
+          {/* Right — Form */}
           <motion.div
-            className="lg:col-span-5"
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3, ease: 'easeOut' }}
+            transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <div className="bg-white rounded-3xl shadow-2xl p-7 lg:p-8 relative overflow-hidden">
-              {/* Decorative corner */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary-50 to-transparent rounded-bl-full" />
-              
-              <div className="relative">
-                <div className="flex items-center gap-2 mb-2">
-                  <Zap className="w-5 h-5 text-primary" />
-                  <span className="text-sm font-semibold text-primary">Free Expert Consultation</span>
-                </div>
-                <h3 className="text-xl font-bold text-text mb-1">Get Your Quote in 10 Minutes</h3>
-                <p className="text-sm text-text-light mb-6">No obligation • 100% free</p>
+            <div className="bg-white rounded-2xl border border-gray-200 shadow-card p-6 lg:p-8">
+              {/* Form Header */}
+              <div className="mb-6">
+                <p className="text-xs font-semibold text-text-light uppercase tracking-wider mb-1">
+                  Fill in your requirements
+                </p>
+                <h3 className="text-xl font-bold text-text mb-1">
+                  Get a free expert consultation
+                </h3>
+                <p className="text-sm text-text-light">
+                  Free quote • No obligation • Reply within 10 mins
+                </p>
+              </div>
 
-                <form className="space-y-3.5" onSubmit={(e) => e.preventDefault()}>
+              <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+                {/* Name */}
+                <div>
+                  <label className="block text-xs font-semibold text-text-light uppercase tracking-wider mb-1.5">
+                    Name *
+                  </label>
                   <input
                     type="text"
-                    placeholder="Full Name"
-                    className="w-full px-4 py-3.5 bg-surface-50 border border-surface-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary focus:bg-white transition-all placeholder:text-text-muted"
+                    placeholder="Your full name"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all placeholder:text-gray-400"
                   />
-                  <input
-                    type="tel"
-                    placeholder="Phone Number"
-                    className="w-full px-4 py-3.5 bg-surface-50 border border-surface-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary focus:bg-white transition-all placeholder:text-text-muted"
-                  />
-                  <div className="relative">
-                    <select
-                      className="w-full px-4 py-3.5 bg-surface-50 border border-surface-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary focus:bg-white transition-all appearance-none text-text-muted"
-                      defaultValue=""
-                    >
-                      <option value="" disabled>Select City</option>
-                      {cityOptions.map((city) => (
-                        <option key={city} value={city}>{city}</option>
-                      ))}
-                    </select>
-                    <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted pointer-events-none" />
-                  </div>
-                  <div className="relative">
-                    <select
-                      className="w-full px-4 py-3.5 bg-surface-50 border border-surface-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary focus:bg-white transition-all appearance-none text-text-muted"
-                      defaultValue=""
-                    >
-                      <option value="" disabled>What do you need?</option>
-                      {serviceOptions.map((service) => (
-                        <option key={service} value={service}>{service}</option>
-                      ))}
-                    </select>
-                    <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted pointer-events-none" />
-                  </div>
-                  <button
-                    type="submit"
-                    className="w-full py-4 bg-primary text-white font-bold rounded-xl hover:bg-primary-700 shadow-lg shadow-primary/25 hover:shadow-xl transition-all duration-200 text-sm"
-                  >
-                    Get Free Quote →
-                  </button>
-                </form>
+                </div>
 
-                <div className="flex items-center justify-center gap-4 mt-5 pt-5 border-t border-surface-100">
-                  <div className="flex items-center gap-1.5 text-xs text-text-light">
-                    <Shield className="w-3.5 h-3.5 text-accent-green" />
-                    <span>100% Secure</span>
+                {/* Email + Phone Row */}
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-xs font-semibold text-text-light uppercase tracking-wider mb-1.5">
+                      Email *
+                    </label>
+                    <input
+                      type="email"
+                      placeholder="you@company.com"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all placeholder:text-gray-400"
+                    />
                   </div>
-                  <div className="flex items-center gap-1.5 text-xs text-text-light">
-                    <Check className="w-3.5 h-3.5 text-accent-green" />
-                    <span>No Spam</span>
-                  </div>
-                  <div className="flex items-center gap-1.5 text-xs text-text-light">
-                    <Zap className="w-3.5 h-3.5 text-accent-green" />
-                    <span>10 Min Reply</span>
+                  <div>
+                    <label className="block text-xs font-semibold text-text-light uppercase tracking-wider mb-1.5">
+                      Phone *
+                    </label>
+                    <input
+                      type="tel"
+                      placeholder="98xxxxxxxx"
+                      className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all placeholder:text-gray-400"
+                    />
                   </div>
                 </div>
+
+                {/* Preferred Location */}
+                <div>
+                  <label className="block text-xs font-semibold text-text-light uppercase tracking-wider mb-1.5">
+                    Preferred Location
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g. Delhi, Mumbai, Bangalore"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all placeholder:text-gray-400"
+                  />
+                </div>
+
+                {/* Additional Details */}
+                <div>
+                  <label className="block text-xs font-semibold text-text-light uppercase tracking-wider mb-1.5">
+                    Additional Details
+                  </label>
+                  <textarea
+                    rows={3}
+                    placeholder="I want to apply for Business Compliance Registration, Company Registration, etc."
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all placeholder:text-gray-400 resize-none"
+                  />
+                </div>
+
+                {/* Submit */}
+                <button
+                  type="submit"
+                  className="w-full py-3.5 bg-[#1a2e44] hover:bg-[#162538] text-white font-semibold rounded-lg transition-colors text-sm shadow-lg"
+                >
+                  Submit Details
+                </button>
+              </form>
+
+              {/* Security note */}
+              <div className="flex items-center justify-center gap-2 mt-4">
+                <Lock className="w-3.5 h-3.5 text-gray-400" />
+                <span className="text-xs text-gray-400">
+                  Your details are safe and only used to contact you.
+                </span>
               </div>
             </div>
           </motion.div>
