@@ -65,15 +65,15 @@ export default function ComparisonTable() {
         >
           <div className="relative grid grid-cols-[1.4fr_1fr_1fr_1fr] gap-0 rounded-3xl bg-white shadow-[0_30px_80px_-25px_rgba(17,65,124,0.25)] border border-surface-100 overflow-hidden">
 
-            {/* Highlighted winner column — soft glossy light-blue pillar */}
+            {/* Highlighted winner column — very soft glossy light-blue pillar */}
             <div
-              className="absolute top-4 bottom-4 left-[calc(1.4/4.4*100%)] w-[calc(1/4.4*100%)] rounded-3xl z-0 overflow-hidden border border-primary-200/70 shadow-[0_20px_45px_-12px_rgba(44,103,158,0.28)]"
-              style={{ background: 'linear-gradient(180deg, #f2f8ff 0%, #dcebfb 55%, #cfe1f6 100%)' }}
+              className="absolute top-4 bottom-4 left-[calc(1.4/4.4*100%)] w-[calc(1/4.4*100%)] rounded-3xl z-0 overflow-hidden border border-primary-100/70 shadow-[0_16px_36px_-14px_rgba(44,103,158,0.18)]"
+              style={{ background: 'linear-gradient(180deg, #fbfdff 0%, #eef5fd 55%, #e6f0fb 100%)' }}
             >
               {/* Top glossy shine */}
-              <div className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-white/90 to-transparent" />
+              <div className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-white/95 to-transparent" />
               {/* Soft glare sweep */}
-              <div className="absolute -left-1/4 top-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12" />
+              <div className="absolute -left-1/4 top-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/35 to-transparent -skew-x-12" />
             </div>
 
             {/* ===== Header row ===== */}
