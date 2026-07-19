@@ -294,6 +294,74 @@
   100% { transform: translateX(-50%); }
 }
 
+/* ===== Modern-tech console (Address Finder) ===== */
+/* Animated tech grid */
+.tech-grid {
+  background-image:
+    linear-gradient(rgba(120,170,220,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120,170,220,0.08) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 40%, transparent 100%);
+}
+
+/* Glowing gradient border card */
+.glow-border {
+  position: relative;
+  background: rgba(15, 26, 46, 0.55);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  border-radius: 24px;
+}
+.glow-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.35), rgba(44,103,158,0.4) 40%, transparent 60%, rgba(245,158,11,0.35));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Tech glass tile */
+.tech-tile {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.10);
+  transition: all 0.25s cubic-bezier(0.22,1,0.36,1);
+}
+.tech-tile:hover {
+  background: rgba(44,103,158,0.18);
+  border-color: rgba(120,170,220,0.6);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px -8px rgba(44,103,158,0.5);
+}
+
+/* Scanline sweep */
+.scanline::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; top: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(120,180,230,0.7), transparent);
+  animation: scan 3.5s ease-in-out infinite;
+}
+@keyframes scan {
+  0% { top: 0; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+
+/* Floating orb drift */
+.orb-drift { animation: orbDrift 16s ease-in-out infinite; }
+@keyframes orbDrift {
+  0%, 100% { transform: translate(0,0); }
+  50% { transform: translate(30px, -30px); }
+}
+
 /* FAQ accordion transition */
 .faq-content {
   display: grid;
