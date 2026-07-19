@@ -15,7 +15,7 @@ const rows = [
 function Cell({ value, highlight }) {
   if (value === true) {
     return (
-      <div className={`mx-auto w-7 h-7 rounded-full flex items-center justify-center ${highlight ? 'bg-white/20' : 'bg-emerald-100'}`}>
+      <div className={`mx-auto w-7 h-7 rounded-full flex items-center justify-center ${highlight ? 'bg-primary shadow-md shadow-primary/30' : 'bg-emerald-100'}`}>
         <Check className={`w-4 h-4 ${highlight ? 'text-white' : 'text-emerald-600'}`} strokeWidth={3} />
       </div>
     )
@@ -27,7 +27,7 @@ function Cell({ value, highlight }) {
       </div>
     )
   }
-  return <span className={`text-sm font-semibold ${highlight ? 'text-white' : 'text-text-light'}`}>{value}</span>
+  return <span className={`text-sm font-bold ${highlight ? 'text-[#11417c]' : 'text-text-light'}`}>{value}</span>
 }
 
 export default function ComparisonTable() {
@@ -65,8 +65,16 @@ export default function ComparisonTable() {
         >
           <div className="relative grid grid-cols-[1.4fr_1fr_1fr_1fr] gap-0 rounded-3xl bg-white shadow-[0_30px_80px_-25px_rgba(17,65,124,0.25)] border border-surface-100 overflow-hidden">
 
-            {/* Highlighted winner column — contained rounded pillar inside the card */}
-            <div className="absolute top-4 bottom-4 left-[calc(1.4/4.4*100%)] w-[calc(1/4.4*100%)] rounded-3xl bg-gradient-to-b from-[#11417c] to-[#2c679e] shadow-[0_20px_45px_-12px_rgba(17,65,124,0.5)] z-0" />
+            {/* Highlighted winner column — soft glossy light-blue pillar */}
+            <div
+              className="absolute top-4 bottom-4 left-[calc(1.4/4.4*100%)] w-[calc(1/4.4*100%)] rounded-3xl z-0 overflow-hidden border border-primary-200/70 shadow-[0_20px_45px_-12px_rgba(44,103,158,0.28)]"
+              style={{ background: 'linear-gradient(180deg, #f2f8ff 0%, #dcebfb 55%, #cfe1f6 100%)' }}
+            >
+              {/* Top glossy shine */}
+              <div className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-white/90 to-transparent" />
+              {/* Soft glare sweep */}
+              <div className="absolute -left-1/4 top-0 w-1/2 h-full bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-12" />
+            </div>
 
             {/* ===== Header row ===== */}
             <div className="relative z-10 p-5 lg:p-6 flex items-end">
@@ -77,7 +85,7 @@ export default function ComparisonTable() {
               <div className="inline-flex items-center gap-1.5 bg-[#f59e0b] text-white text-[10px] font-bold px-3 py-1 rounded-full mb-2 shadow-lg">
                 <Crown className="w-3 h-3" /> BEST VALUE
               </div>
-              <div className="text-white font-extrabold text-base lg:text-lg">EaseMyOffice</div>
+              <div className="text-[#11417c] font-extrabold text-base lg:text-lg">EaseMyOffice</div>
             </div>
             <div className="relative z-10 p-5 lg:p-6 text-center flex flex-col justify-end">
               <div className="text-text-light font-semibold text-sm lg:text-base">Coworking</div>
@@ -122,7 +130,7 @@ export default function ComparisonTable() {
             <div className="relative z-10 p-4 pb-6">
               <a
                 href="#hero"
-                className="block w-full text-center py-3 bg-white text-[#11417c] font-bold text-sm rounded-xl hover:bg-blue-50 shadow-lg transition-all"
+                className="block w-full text-center py-3 bg-primary text-white font-bold text-sm rounded-xl hover:bg-primary-700 shadow-lg shadow-primary/25 transition-all"
               >
                 Get Started
               </a>
