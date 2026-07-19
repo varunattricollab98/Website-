@@ -65,15 +65,15 @@ export default function ComparisonTable() {
         >
           <div className="relative grid grid-cols-[1.4fr_1fr_1fr_1fr] gap-0 rounded-3xl bg-white shadow-[0_30px_80px_-25px_rgba(17,65,124,0.25)] border border-surface-100 overflow-hidden">
 
-            {/* Highlighted winner column background — spans full height */}
-            <div className="absolute top-0 bottom-0 left-[calc(1.4/4.4*100%)] w-[calc(1/4.4*100%)] bg-gradient-to-b from-[#11417c] to-[#2c679e] shadow-2xl z-0" />
+            {/* Highlighted winner column — contained rounded pillar inside the card */}
+            <div className="absolute top-4 bottom-4 left-[calc(1.4/4.4*100%)] w-[calc(1/4.4*100%)] rounded-3xl bg-gradient-to-b from-[#11417c] to-[#2c679e] shadow-[0_20px_45px_-12px_rgba(17,65,124,0.5)] z-0" />
 
             {/* ===== Header row ===== */}
             <div className="relative z-10 p-5 lg:p-6 flex items-end">
               <span className="text-xs font-semibold text-text-muted uppercase tracking-wider">Features</span>
             </div>
             {/* EMO winner header */}
-            <div className="relative z-10 p-5 lg:p-6 text-center">
+            <div className="relative z-10 pt-8 pb-5 px-5 text-center">
               <div className="inline-flex items-center gap-1.5 bg-[#f59e0b] text-white text-[10px] font-bold px-3 py-1 rounded-full mb-2 shadow-lg">
                 <Crown className="w-3 h-3" /> BEST VALUE
               </div>
