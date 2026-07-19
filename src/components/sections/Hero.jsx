@@ -5,7 +5,7 @@ export default function Hero() {
   return (
     <section id="hero" className="pt-24 lg:pt-28 pb-10 lg:pb-12 bg-white">
       <div className="container-custom">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
 
           {/* Left Content */}
           <motion.div
@@ -74,9 +74,9 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Right — Crystal Glass Form */}
+          {/* Right — Crystal Glass Form (sticky) */}
           <motion.div
-            className="relative"
+            className="relative lg:sticky lg:top-24"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}

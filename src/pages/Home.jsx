@@ -1,6 +1,8 @@
 import Hero from '../components/sections/Hero'
+import TrustMarquee from '../components/sections/TrustMarquee'
 import Plans from '../components/sections/Plans'
 import TrustLogos from '../components/sections/TrustLogos'
+import FloatingCTA from '../components/ui/FloatingCTA'
 import Gallery from '../components/sections/Gallery'
 import Stats from '../components/sections/Stats'
 import CityGrid from '../components/sections/CityGrid'
@@ -17,6 +19,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <TrustMarquee />
       <Plans />
       <TrustLogos />
       <Gallery />
@@ -30,6 +33,7 @@ export default function Home() {
       <Testimonials />
       <FAQ />
       <FinalCTA />
+      <FloatingCTA />
     </>
   )
 }
