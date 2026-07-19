@@ -1,5 +1,7 @@
 import Hero from '../components/sections/Hero'
 import TrustMarquee from '../components/sections/TrustMarquee'
+import BrandPillars from '../components/sections/BrandPillars'
+import AddressFinder from '../components/sections/AddressFinder'
 import Plans from '../components/sections/Plans'
 import TrustLogos from '../components/sections/TrustLogos'
 import FloatingCTA from '../components/ui/FloatingCTA'
@@ -20,6 +22,8 @@ export default function Home() {
     <>
       <Hero />
       <TrustMarquee />
+      <BrandPillars />
+      <AddressFinder />
       <Plans />
       <TrustLogos />
       <Gallery />
