@@ -15,29 +15,6 @@ const stepMeta = [
   { n: 3, label: 'Match' },
 ]
 
-// Pre-computed bubble configs (size, left%, duration, delay)
-const bubbleConfigs = [
-  { s: 60, l: 6, d: 14, delay: 0 },
-  { s: 28, l: 18, d: 11, delay: 2 },
-  { s: 90, l: 30, d: 18, delay: 1 },
-  { s: 40, l: 44, d: 13, delay: 4 },
-  { s: 22, l: 58, d: 10, delay: 0.5 },
-  { s: 70, l: 70, d: 16, delay: 3 },
-  { s: 34, l: 82, d: 12, delay: 2.5 },
-  { s: 50, l: 92, d: 15, delay: 1.5 },
-  { s: 18, l: 12, d: 9, delay: 5 },
-  { s: 46, l: 64, d: 17, delay: 6 },
-]
-
-const sparkleConfigs = [
-  { l: 15, t: 25, d: 3, delay: 0 },
-  { l: 80, t: 20, d: 2.5, delay: 1 },
-  { l: 50, t: 15, d: 3.5, delay: 2 },
-  { l: 88, t: 60, d: 2.8, delay: 0.5 },
-  { l: 8, t: 65, d: 3.2, delay: 1.8 },
-  { l: 35, t: 78, d: 2.6, delay: 2.4 },
-]
-
 export default function AddressFinder() {
   const [step, setStep] = useState(1)
   const [city, setCity] = useState(null)
@@ -47,39 +24,10 @@ export default function AddressFinder() {
 
   return (
     <section className="py-20 lg:py-28 relative overflow-hidden">
-      {/* Soft highlighted tint (no heavy blue) */}
+      {/* Soft highlighted tint */}
       <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, #f4f9ff 0%, #eaf3fc 45%, #f4f9ff 100%)' }} />
       {/* Subtle glow accents */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-72 bg-[#93bce0]/20 rounded-full blur-3xl" />
-
-      {/* Rising bubbles */}
-      <div className="bubbles">
-        {bubbleConfigs.map((b, i) => (
-          <span
-            key={i}
-            className="bubble"
-            style={{
-              width: `${b.s}px`,
-              height: `${b.s}px`,
-              left: `${b.l}%`,
-              animationDuration: `${b.d}s`,
-              animationDelay: `${b.delay}s`,
-            }}
-          />
-        ))}
-        {sparkleConfigs.map((s, i) => (
-          <span
-            key={`sp-${i}`}
-            className="sparkle"
-            style={{
-              left: `${s.l}%`,
-              top: `${s.t}%`,
-              animationDuration: `${s.d}s`,
-              animationDelay: `${s.delay}s`,
-            }}
-          />
-        ))}
-      </div>
 
       <div className="container-custom relative">
         <motion.div
@@ -144,15 +92,22 @@ export default function AddressFinder() {
                     </div>
                     <h3 className="text-base lg:text-lg font-semibold text-[#0f1a2e]">Which city do you want your address in?</h3>
                   </div>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                     {cities.map((c) => (
                       <button
                         key={c.slug}
                         onClick={() => { setCity(c); setStep(2) }}
-                        className="group rounded-xl px-4 py-3.5 text-left bg-white border border-surface-200 hover:border-primary hover:bg-primary-50 hover:-translate-y-0.5 transition-all duration-200"
+                        className="gloss-tile group rounded-2xl px-4 py-4 text-left"
                       >
-                        <span className="block text-sm font-semibold text-[#0f1a2e] group-hover:text-primary">{c.name}</span>
-                        <span className="block text-[11px] font-mono text-text-muted mt-0.5">₹{c.price}/mo</span>
+                        <div className="relative flex items-start gap-2.5">
+                          <div className="w-8 h-8 rounded-lg bg-primary-50 flex items-center justify-center flex-shrink-0 group-hover:bg-primary transition-colors duration-300">
+                            <MapPin className="w-4 h-4 text-primary group-hover:text-white transition-colors duration-300" />
+                          </div>
+                          <div className="min-w-0">
+                            <span className="block text-sm font-bold text-[#0f1a2e] group-hover:text-primary transition-colors truncate">{c.name}</span>
+                            <span className="block text-[11px] font-semibold text-text-muted mt-0.5">from ₹{c.price}/mo</span>
+                          </div>
+                        </div>
                       </button>
                     ))}
                   </div>
