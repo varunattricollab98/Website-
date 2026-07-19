@@ -362,6 +362,46 @@
   50% { transform: translate(30px, -30px); }
 }
 
+/* ===== Bubble / water highlight effect ===== */
+.bubbles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.bubble {
+  position: absolute;
+  bottom: -80px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 32% 30%, rgba(255,255,255,0.95), rgba(147,188,224,0.28) 60%, rgba(44,103,158,0.10));
+  border: 1px solid rgba(147,188,224,0.35);
+  box-shadow: inset 0 0 12px rgba(255,255,255,0.6), 0 2px 8px rgba(44,103,158,0.08);
+  animation: bubbleRise linear infinite;
+  opacity: 0;
+}
+@keyframes bubbleRise {
+  0%   { transform: translateY(0) translateX(0) scale(0.7); opacity: 0; }
+  10%  { opacity: 0.7; }
+  50%  { transform: translateY(-320px) translateX(20px) scale(1); opacity: 0.55; }
+  90%  { opacity: 0.4; }
+  100% { transform: translateY(-640px) translateX(-10px) scale(1.15); opacity: 0; }
+}
+
+/* Soft glitter sparkles */
+.sparkle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff, rgba(147,188,224,0.6));
+  animation: twinkle ease-in-out infinite;
+  opacity: 0;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 0.9; transform: scale(1.2); }
+}
+
 /* FAQ accordion transition */
 .faq-content {
   display: grid;
