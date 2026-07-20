@@ -22,7 +22,6 @@ export default function Home() {
     <>
       <Hero />
       <TrustMarquee />
-      <BrandPillars />
       <AddressFinder />
       <Plans />
       <TrustLogos />
@@ -33,6 +32,7 @@ export default function Home() {
       <HowItWorks />
       <MarketplaceLogos />
       <ComparisonTable />
+      <BrandPillars />
       <WhyChooseUs />
       <Testimonials />
       <FAQ />
