@@ -4,7 +4,7 @@ export const cities = [
   { name: 'Bangalore', slug: 'bangalore', price: 999, image: 'https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=800&q=80' },
   { name: 'Gurgaon', slug: 'gurgaon', price: 999, image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80' },
   { name: 'Noida', slug: 'noida', price: 899, image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=800&q=80' },
-  { name: 'Pune', slug: 'pune', price: 899, image: 'https://images.unsplash.com/photo-1572445271230-a78b5944a659?auto=format&fit=crop&w=800&q=80' },
+  { name: 'Pune', slug: 'pune', price: 899, image: '/images/cities/pune.jpg' },
   { name: 'Hyderabad', slug: 'hyderabad', price: 999, image: 'https://images.unsplash.com/photo-1587135941948-670b381f08ce?auto=format&fit=crop&w=800&q=80' },
   { name: 'Chennai', slug: 'chennai', price: 999, image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?auto=format&fit=crop&w=800&q=80' },
   { name: 'Ahmedabad', slug: 'ahmedabad', price: 799, image: 'https://images.unsplash.com/photo-1570168007204-dfb528c6958f?auto=format&fit=crop&w=800&q=80' },
@@ -24,5 +24,5 @@ export const galleryOffices = [
   { city: 'Bangalore', area: 'Koramangala', image: 'https://images.unsplash.com/photo-1596176530529-78163a4f7af2?auto=format&fit=crop&w=800&q=80' },
   { city: 'Gurgaon', area: 'Cyber City', image: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=800&q=80' },
   { city: 'Hyderabad', area: 'HITEC City', image: 'https://images.unsplash.com/photo-1587135941948-670b381f08ce?auto=format&fit=crop&w=800&q=80' },
-  { city: 'Pune', area: 'Baner', image: 'https://images.unsplash.com/photo-1572445271230-a78b5944a659?auto=format&fit=crop&w=800&q=80' },
+  { city: 'Pune', area: 'Baner', image: '/images/cities/pune.jpg' },
 ]
