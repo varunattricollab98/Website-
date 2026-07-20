@@ -7,6 +7,7 @@ import CAServices from './pages/CAServices'
 import PricingPage from './pages/Pricing'
 import About from './pages/About'
 import Contact from './pages/Contact'
+import ListYourSpace from './pages/ListYourSpace'
 import CityTemplate from './pages/CityTemplate'
 import Navbar from './components/layout/Navbar'
 import Footer from './components/layout/Footer'
@@ -25,6 +26,7 @@ function App() {
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/list-your-space" element={<ListYourSpace />} />
           <Route path="/city/:citySlug" element={<CityTemplate />} />
         </Routes>
       </main>
