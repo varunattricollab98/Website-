@@ -73,21 +73,30 @@ export default function BrandPillars() {
         </motion.div>
 
         {/* Colorful toggles */}
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
+        <div className="flex flex-wrap items-center justify-center gap-2.5 lg:gap-3 mb-12">
           {pillars.map((pill, i) => {
             const isActive = i === active
             return (
               <button
                 key={pill.word}
                 onClick={() => setActive(i)}
-                className="relative px-6 py-3 rounded-full text-lg lg:text-xl font-extrabold tracking-tight transition-all duration-300"
+                className="group relative flex items-center gap-2.5 pl-2.5 pr-5 py-2.5 rounded-full text-base lg:text-lg font-bold tracking-tight transition-all duration-300 hover:-translate-y-0.5"
                 style={{
                   color: isActive ? '#fff' : pill.color,
-                  background: isActive ? pill.color : 'transparent',
-                  boxShadow: isActive ? `0 10px 30px -8px ${pill.glow}` : 'none',
-                  border: isActive ? '1px solid transparent' : `1.5px solid ${pill.color}33`,
+                  background: isActive ? `linear-gradient(135deg, ${pill.color}, ${pill.color}d9)` : '#fff',
+                  boxShadow: isActive ? `0 12px 28px -8px ${pill.glow}` : `0 2px 10px -4px ${pill.color}22`,
+                  border: isActive ? '1px solid transparent' : `1.5px solid ${pill.color}2e`,
                 }}
               >
+                {/* icon chip */}
+                <span
+                  className="w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300"
+                  style={{
+                    background: isActive ? 'rgba(255,255,255,0.22)' : `${pill.color}14`,
+                  }}
+                >
+                  <pill.icon className="w-4 h-4" style={{ color: isActive ? '#fff' : pill.color }} />
+                </span>
                 {pill.word}
               </button>
             )
