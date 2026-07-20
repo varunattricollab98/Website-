@@ -1,23 +1,30 @@
-import { motion } from 'framer-motion'
-import { ShieldCheck, Zap, IndianRupee } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useEffect } from 'react'
+import { ShieldCheck, Zap, IndianRupee, ArrowRight, Check } from 'lucide-react'
 
 const pillars = [
   {
     icon: ShieldCheck,
     word: 'Compliant',
     title: '100% Government-Ready',
-    desc: 'Every address comes with fully compliant NOC, rent agreement & utility bills — accepted by GST and MCA officers, backed by our 97% approval rate.',
+    desc: 'Every address comes with fully compliant NOC, rent agreement & utility bills — accepted by GST and MCA officers across India.',
+    stat: '97%',
+    statLabel: 'First-attempt approval rate',
+    points: ['Notarized rent agreement', 'NOC from property owner', 'Utility bill included'],
     color: '#2c679e',
-    bg: 'bg-primary-50',
+    glow: 'rgba(44,103,158,0.35)',
     num: '01',
   },
   {
     icon: Zap,
     word: 'Fast',
     title: 'Ready in 2–3 Days',
-    desc: 'No paperwork hassle, no physical visits. Submit your KYC and get your complete document set delivered within days — not weeks.',
+    desc: 'No paperwork hassle, no physical visits. Submit your KYC once and get your complete document set delivered within days — not weeks.',
+    stat: '2–3',
+    statLabel: 'Working days to handover',
+    points: ['100% digital onboarding', 'Dedicated account manager', 'Same-week activation'],
     color: '#f59e0b',
-    bg: 'bg-amber-50',
+    glow: 'rgba(245,158,11,0.35)',
     num: '02',
   },
   {
@@ -25,18 +32,33 @@ const pillars = [
     word: 'Affordable',
     title: 'From Just ₹699/mo',
     desc: 'A prestigious business address at a fraction of the cost of a physical office. No deposits, no lock-ins, no hidden fees — ever.',
+    stat: '₹699',
+    statLabel: 'Starting price per month',
+    points: ['No security deposit', 'No long-term lock-in', 'Transparent pricing'],
     color: '#059669',
-    bg: 'bg-emerald-50',
+    glow: 'rgba(5,150,105,0.32)',
     num: '03',
   },
 ]
 
 export default function BrandPillars() {
+  const [active, setActive] = useState(0)
+  const p = pillars[active]
+
+  // Auto-advance every 5s
+  useEffect(() => {
+    const t = setInterval(() => setActive((a) => (a + 1) % pillars.length), 5000)
+    return () => clearInterval(t)
+  }, [])
+
   return (
     <section className="section-padding bg-white relative overflow-hidden">
+      {/* Tech grid */}
+      <div className="absolute inset-0 grid-pattern opacity-[0.35]" />
+
       <div className="container-custom relative">
         <motion.div
-          className="text-center mb-14 max-w-2xl mx-auto"
+          className="text-center mb-10 max-w-2xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -50,56 +72,112 @@ export default function BrandPillars() {
           </h2>
         </motion.div>
 
-        {/* Big word band */}
-        <motion.div
-          className="flex flex-wrap items-center justify-center gap-3 lg:gap-5 mb-16"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-        >
-          {pillars.map((p, i) => (
-            <div key={p.word} className="flex items-center gap-3 lg:gap-5">
-              <span className="text-2xl lg:text-4xl font-extrabold tracking-tight" style={{ color: p.color }}>
-                {p.word}
-              </span>
-              {i < pillars.length - 1 && (
-                <span className="w-2 h-2 rounded-full bg-surface-200" />
-              )}
+        {/* Colorful toggles */}
+        <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
+          {pillars.map((pill, i) => {
+            const isActive = i === active
+            return (
+              <button
+                key={pill.word}
+                onClick={() => setActive(i)}
+                className="relative px-6 py-3 rounded-full text-lg lg:text-xl font-extrabold tracking-tight transition-all duration-300"
+                style={{
+                  color: isActive ? '#fff' : pill.color,
+                  background: isActive ? pill.color : 'transparent',
+                  boxShadow: isActive ? `0 10px 30px -8px ${pill.glow}` : 'none',
+                  border: isActive ? '1px solid transparent' : `1.5px solid ${pill.color}33`,
+                }}
+              >
+                {pill.word}
+              </button>
+            )
+          })}
+        </div>
+
+        {/* Showcase panel */}
+        <div className="max-w-5xl mx-auto">
+          <div
+            className="relative rounded-[28px] border overflow-hidden transition-all duration-500"
+            style={{
+              borderColor: `${p.color}33`,
+              boxShadow: `0 30px 70px -25px ${p.glow}`,
+              background: 'linear-gradient(160deg, #ffffff 0%, #f8fbff 100%)',
+            }}
+          >
+            {/* Color glow accent */}
+            <div className="absolute -top-24 -right-24 w-72 h-72 rounded-full blur-3xl transition-colors duration-500" style={{ background: p.glow }} />
+
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={active}
+                className="relative grid lg:grid-cols-2 gap-8 p-8 lg:p-12 items-center"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.35 }}
+              >
+                {/* Left content */}
+                <div>
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className="w-14 h-14 rounded-2xl flex items-center justify-center shadow-lg" style={{ background: `linear-gradient(135deg, ${p.color}, ${p.color}cc)` }}>
+                      <p.icon className="w-7 h-7 text-white" />
+                    </div>
+                    <span className="text-sm font-bold uppercase tracking-[0.2em]" style={{ color: p.color }}>
+                      {p.word}
+                    </span>
+                  </div>
+
+                  <h3 className="text-2xl lg:text-3xl font-bold text-[#0f1a2e] mb-3">{p.title}</h3>
+                  <p className="text-text-light leading-relaxed mb-6">{p.desc}</p>
+
+                  <div className="space-y-2.5">
+                    {p.points.map((point) => (
+                      <div key={point} className="flex items-center gap-2.5">
+                        <div className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: `${p.color}1a` }}>
+                          <Check className="w-3 h-3" style={{ color: p.color }} strokeWidth={3} />
+                        </div>
+                        <span className="text-sm font-medium text-[#0f1a2e]">{point}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Right — big stat display */}
+                <div className="relative flex items-center justify-center">
+                  <div
+                    className="relative w-full max-w-xs aspect-square rounded-3xl flex flex-col items-center justify-center text-center p-8 border"
+                    style={{
+                      background: `linear-gradient(160deg, ${p.color}0d, ${p.color}03)`,
+                      borderColor: `${p.color}22`,
+                    }}
+                  >
+                    {/* faded number bg */}
+                    <span className="absolute inset-0 flex items-center justify-center text-[10rem] font-extrabold select-none opacity-[0.06]" style={{ color: p.color }}>
+                      {p.num}
+                    </span>
+                    <div className="relative">
+                      <div className="text-5xl lg:text-6xl font-extrabold mb-2" style={{ color: p.color }}>
+                        {p.stat}
+                      </div>
+                      <div className="text-sm font-medium text-text-light max-w-[180px]">{p.statLabel}</div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Progress bar */}
+            <div className="relative h-1 bg-surface-100">
+              <motion.div
+                key={active}
+                className="h-full"
+                style={{ background: p.color }}
+                initial={{ width: '0%' }}
+                animate={{ width: '100%' }}
+                transition={{ duration: 5, ease: 'linear' }}
+              />
             </div>
-          ))}
-        </motion.div>
-
-        {/* Pillar cards */}
-        <div className="grid md:grid-cols-3 gap-6 lg:gap-8">
-          {pillars.map((pillar, index) => (
-            <motion.div
-              key={pillar.word}
-              className="group relative bg-white rounded-2xl border border-surface-200 p-8 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 overflow-hidden"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.12 }}
-            >
-              {/* Big faded number */}
-              <span className="absolute -top-4 -right-2 text-8xl font-extrabold text-surface-100 select-none group-hover:text-surface-200 transition-colors">
-                {pillar.num}
-              </span>
-
-              <div className="relative">
-                <div className={`w-14 h-14 rounded-2xl ${pillar.bg} flex items-center justify-center mb-5`}>
-                  <pillar.icon className="w-7 h-7" style={{ color: pillar.color }} />
-                </div>
-                <div className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: pillar.color }}>
-                  {pillar.word}
-                </div>
-                <h3 className="text-xl font-bold text-[#0f1a2e] mb-3">{pillar.title}</h3>
-                <p className="text-sm text-text-light leading-relaxed">{pillar.desc}</p>
-              </div>
-
-              {/* Bottom accent line */}
-              <div className="absolute bottom-0 left-0 h-1 w-0 group-hover:w-full transition-all duration-500" style={{ background: pillar.color }} />
-            </motion.div>
-          ))}
+          </div>
         </div>
       </div>
     </section>
