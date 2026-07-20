@@ -111,13 +111,14 @@ export default function Plans() {
                     onError={(e) => { e.currentTarget.style.display = 'none' }}
                   />
                   <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(15,26,46,0.15) 0%, transparent 40%, rgba(15,26,46,0.55) 100%)' }} />
-                  {/* Floating icon */}
-                  <div className={`absolute -bottom-6 left-6 w-12 h-12 rounded-xl flex items-center justify-center shadow-lg border-2 border-white ${isGreen ? 'bg-emerald-600' : plan.popular ? 'bg-primary' : 'bg-[#11417c]'}`}>
-                    <plan.icon className="w-6 h-6 text-white" />
-                  </div>
                 </div>
 
-                <div className="p-7 pt-9 flex flex-col flex-1">
+                {/* Floating icon — placed OUTSIDE the image header so it never gets clipped */}
+                <div className={`absolute top-[8.25rem] left-6 z-20 w-14 h-14 rounded-2xl flex items-center justify-center shadow-[0_8px_20px_-6px_rgba(15,26,46,0.4)] ring-4 ring-white ${isGreen ? 'bg-gradient-to-br from-emerald-500 to-emerald-600' : plan.popular ? 'bg-gradient-to-br from-[#2c679e] to-[#11417c]' : 'bg-gradient-to-br from-[#2c679e] to-[#11417c]'}`}>
+                  <plan.icon className="w-7 h-7 text-white" strokeWidth={2} />
+                </div>
+
+                <div className="p-7 pt-11 flex flex-col flex-1">
                   <h3 className="text-lg font-bold text-[#0f1a2e] mb-2">{plan.name}</h3>
                   <p className="text-sm text-text-light mb-6 leading-relaxed">{plan.description}</p>
 
