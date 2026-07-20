@@ -5,7 +5,7 @@ const plans = [
   {
     icon: Building2,
     name: 'Company Registration Plan',
-    description: 'Register your company at premium addresses in any city — without taking a physical office.',
+    description: 'Incorporate your company at a prestigious commercial address in any city — full MCA compliance, zero physical office required.',
     image: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=800&q=80',
     accent: 'blue',
     features: [
@@ -21,7 +21,7 @@ const plans = [
   {
     icon: FileCheck,
     name: 'Business Compliance Registration Plan',
-    description: 'Get a Business compliant virtual office in any state in India to expand sales pan-India.',
+    description: 'Establish a GST-ready presence in any state across India and scale your operations nationwide with complete confidence.',
     image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=800&q=80',
     accent: 'blue',
     features: [
@@ -37,7 +37,7 @@ const plans = [
   {
     icon: Mail,
     name: 'Business Mailing Address',
-    description: 'A premium mailing address for your business — no physical office required.',
+    description: 'A professional business address for correspondence and brand presence — without the overhead of a physical office.',
     image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80',
     accent: 'green',
     features: [
@@ -61,13 +61,13 @@ export default function Plans() {
         >
           <div className="inline-flex items-center gap-2 bg-primary-50 border border-primary-100 rounded-full px-4 py-1.5 mb-5">
             <span className="w-1.5 h-1.5 bg-primary rounded-full" />
-            <span className="text-xs font-semibold text-primary uppercase tracking-wider">Our Plans</span>
+            <span className="text-xs font-semibold text-primary uppercase tracking-wider">Plans &amp; Solutions</span>
           </div>
           <h2 className="text-3xl lg:text-[2.5rem] font-bold text-[#0f1a2e] mb-4 leading-tight">
-            Choose the Right Plan<br className="hidden sm:block" /> for Your Business
+            Solutions Built for Every<br className="hidden sm:block" /> Stage of Your Business
           </h2>
-          <p className="text-text-light text-base lg:text-lg max-w-lg mx-auto">
-            Flexible, affordable plans designed to help your business grow — pick what fits.
+          <p className="text-text-light text-base lg:text-lg max-w-xl mx-auto">
+            Transparent, fully-compliant plans for founders, finance teams, and growing enterprises — with dedicated support and no hidden costs.
           </p>
         </motion.div>
 
