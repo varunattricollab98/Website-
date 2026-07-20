@@ -3,13 +3,14 @@ import { useState } from 'react'
 
 // Big Indian marketplaces. Logos auto-load from /public/images/logos/{slug}.png (or .svg)
 // when uploaded; until then a clean brand-coloured wordmark shows.
+// file: explicit path for logos we already have; others default to /images/logos/{slug}.png
 const marketplaces = [
-  { name: 'Amazon', slug: 'amazon', color: '#ff9900' },
+  { name: 'Amazon', slug: 'amazon', color: '#ff9900', file: '/images/logos/amazon.svg' },
   { name: 'Flipkart', slug: 'flipkart', color: '#2874f0' },
   { name: 'Myntra', slug: 'myntra', color: '#ff3f6c' },
   { name: 'Meesho', slug: 'meesho', color: '#9f2089' },
   { name: 'Ajio', slug: 'ajio', color: '#2f4858' },
-  { name: 'Nykaa', slug: 'nykaa', color: '#fc2779' },
+  { name: 'Nykaa', slug: 'nykaa', color: '#fc2779', file: '/images/logos/nykaa.svg' },
   { name: 'JioMart', slug: 'jiomart', color: '#0a2885' },
   { name: 'Instamart', slug: 'instamart', color: '#fc8019' },
 ]
@@ -33,10 +34,10 @@ function Brand({ b, index }) {
         </span>
       ) : (
         <img
-          src={`/images/logos/${b.slug}.png`}
+          src={b.file || `/images/logos/${b.slug}.png`}
           alt={b.name}
           loading="lazy"
-          className="h-8 lg:h-9 w-auto object-contain grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+          className="h-9 lg:h-11 w-auto object-contain opacity-85 hover:opacity-100 transition-all duration-300"
           onError={() => setFailed(true)}
         />
       )}
