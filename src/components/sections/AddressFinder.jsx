@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
-import { MapPin, FileCheck, Building2, Mail, ArrowRight, ArrowLeft, Check, RotateCcw, Zap, Sparkles } from 'lucide-react'
+import { MapPin, FileCheck, Building2, Mail, ArrowRight, ArrowLeft, Check, RotateCcw, Zap, Sparkles, TrendingUp } from 'lucide-react'
 import { cities } from '../../data/cities'
 
 const goals = [
@@ -50,7 +50,7 @@ export default function AddressFinder() {
 
         {/* Console card — light crystal glass */}
         <motion.div
-          className="crystal-glass max-w-3xl mx-auto p-6 lg:p-10 relative rounded-[24px]"
+          className="crystal-glass max-w-5xl mx-auto p-6 lg:p-12 relative rounded-[24px]"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -92,24 +92,35 @@ export default function AddressFinder() {
                     </div>
                     <h3 className="text-base lg:text-lg font-semibold text-[#0f1a2e]">Which city do you want your address in?</h3>
                   </div>
-                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                    {cities.map((c) => (
-                      <button
-                        key={c.slug}
-                        onClick={() => { setCity(c); setStep(2) }}
-                        className="gloss-tile group rounded-2xl px-4 py-4 text-left"
-                      >
-                        <div className="relative flex items-start gap-2.5">
-                          <div className="w-8 h-8 rounded-lg bg-primary-50 flex items-center justify-center flex-shrink-0 group-hover:bg-primary transition-colors duration-300">
-                            <MapPin className="w-4 h-4 text-primary group-hover:text-white transition-colors duration-300" />
+                  <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 lg:gap-4">
+                    {cities.map((c) => {
+                      const isPopular = ['delhi', 'mumbai', 'bangalore', 'gurgaon'].includes(c.slug)
+                      return (
+                        <button
+                          key={c.slug}
+                          onClick={() => { setCity(c); setStep(2) }}
+                          className="gloss-tile group rounded-2xl p-4 text-left relative"
+                        >
+                          {/* Popular badge */}
+                          {isPopular && (
+                            <span className="absolute top-2.5 right-2.5 z-10 inline-flex items-center gap-1 bg-[#f59e0b]/10 text-[#d97706] text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wide">
+                              <TrendingUp className="w-2.5 h-2.5" /> Popular
+                            </span>
+                          )}
+                          <div className="relative flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-50 to-[#e0f0ff] flex items-center justify-center flex-shrink-0 group-hover:from-[#2c679e] group-hover:to-[#5b96cc] transition-all duration-300 shadow-sm">
+                              <MapPin className="w-5 h-5 text-primary group-hover:text-white transition-colors duration-300" />
+                            </div>
+                            <div className="min-w-0 flex-1">
+                              <span className="block text-sm font-bold text-[#0f1a2e] group-hover:text-primary transition-colors">{c.name}</span>
+                              <span className="block text-[11px] font-semibold text-text-muted mt-0.5">from ₹{c.price}/mo</span>
+                            </div>
+                            {/* Hover arrow */}
+                            <ArrowRight className="w-4 h-4 text-primary opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 flex-shrink-0" />
                           </div>
-                          <div className="min-w-0">
-                            <span className="block text-sm font-bold text-[#0f1a2e] group-hover:text-primary transition-colors truncate">{c.name}</span>
-                            <span className="block text-[11px] font-semibold text-text-muted mt-0.5">from ₹{c.price}/mo</span>
-                          </div>
-                        </div>
-                      </button>
-                    ))}
+                        </button>
+                      )
+                    })}
                   </div>
                 </motion.div>
               )}
