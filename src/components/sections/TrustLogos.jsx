@@ -1,28 +1,25 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 
-// Logos are pulled live from each brand's own domain via Clearbit's logo API.
-// If a logo can't be fetched, the brand name shows automatically (graceful fallback).
-// To use your own official files instead, drop them in /public/images/logos/ and set `local`.
+// Client brands. Logos auto-load from /public/images/logos/{slug}.png (or .svg) once uploaded;
+// until then a clean wordmark shows so nothing ever looks broken.
 const brands = [
-  { name: 'Shiprocket', domain: 'shiprocket.in' },
-  { name: 'IndiaMART', domain: 'indiamart.com' },
-  { name: 'Verizon', domain: 'verizon.com' },
-  { name: "Dr. Reddy's", domain: 'drreddys.com' },
-  { name: 'Udaan', domain: 'udaan.com' },
-  { name: 'Omnicuris', domain: 'omnicuris.com' },
-  { name: 'Kalki Fashion', domain: 'kalkifashion.com' },
-  { name: 'Xpressbees', domain: 'xpressbees.com' },
-  { name: 'EarthtronEV', domain: 'earthtronev.com' },
-  { name: 'Tuckit', domain: 'tuckit.in' },
-  { name: 'Rudra Gas', domain: 'rudragas.com' },
-  { name: 'Bizzstay', domain: 'bizzstay.com' },
+  { name: 'Shiprocket', slug: 'shiprocket' },
+  { name: 'IndiaMART', slug: 'indiamart' },
+  { name: 'Verizon', slug: 'verizon' },
+  { name: "Dr. Reddy's", slug: 'drreddys' },
+  { name: 'Udaan', slug: 'udaan' },
+  { name: 'Omnicuris', slug: 'omnicuris' },
+  { name: 'Kalki Fashion', slug: 'kalki' },
+  { name: 'Xpressbees', slug: 'xpressbees' },
+  { name: 'EarthtronEV', slug: 'earthtronev' },
+  { name: 'Tuckit', slug: 'tuckit' },
+  { name: 'Rudra Gas', slug: 'rudragas' },
+  { name: 'Bizzstay', slug: 'bizzstay' },
 ]
 
 function BrandLogo({ brand }) {
   const [failed, setFailed] = useState(false)
-  const src = brand.local || `https://logo.clearbit.com/${brand.domain}?size=128`
-
   return (
     <div
       className="premium-card flex items-center justify-center h-24 px-5 bg-white border border-surface-200 rounded-2xl"
@@ -36,7 +33,7 @@ function BrandLogo({ brand }) {
         <span className="text-base lg:text-lg font-bold text-[#11417c]">{brand.name}</span>
       ) : (
         <img
-          src={src}
+          src={`/images/logos/${brand.slug}.png`}
           alt={brand.name}
           loading="lazy"
           className="logo-hdr max-h-10 lg:max-h-12 w-auto object-contain"
